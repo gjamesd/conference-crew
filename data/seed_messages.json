@@ -1,0 +1,92 @@
+[
+  {
+    "message_id": "seed-001",
+    "group_id": "crew-demo",
+    "sender": "Alex",
+    "body": "I'm all in on eBPF and runtime security today. Want anything that goes deep on probes.",
+    "body_text": "I'm all in on eBPF and runtime security today. Want anything that goes deep on probes.",
+    "role": "user",
+    "timestamp": "2026-11-09T08:30:00",
+    "source": "seed"
+  },
+  {
+    "message_id": "seed-002",
+    "group_id": "crew-demo",
+    "sender": "Sam",
+    "body": "Please keep AI ethics and responsible RAG on the radar \u2014 I don't want hype-only sessions.",
+    "body_text": "Please keep AI ethics and responsible RAG on the radar \u2014 I don't want hype-only sessions.",
+    "role": "user",
+    "timestamp": "2026-11-09T08:33:00",
+    "source": "seed"
+  },
+  {
+    "message_id": "seed-003",
+    "group_id": "crew-demo",
+    "sender": "Jordan",
+    "body": "Platform engineering + IDP stuff for me. Golden paths > more YAML.",
+    "body_text": "Platform engineering + IDP stuff for me. Golden paths > more YAML.",
+    "role": "user",
+    "timestamp": "2026-11-09T08:36:00",
+    "source": "seed"
+  },
+  {
+    "message_id": "seed-004",
+    "group_id": "crew-demo",
+    "sender": "Alex",
+    "body": "Also down to stick together for the afternoon if we can find overlap.",
+    "body_text": "Also down to stick together for the afternoon if we can find overlap.",
+    "role": "user",
+    "timestamp": "2026-11-09T08:39:00",
+    "source": "seed"
+  },
+  {
+    "message_id": "seed-005",
+    "group_id": "crew-demo",
+    "sender": "Sam",
+    "body": "Dinner idea: that ramen place near Hall B around 7 if we survive the keynote.",
+    "body_text": "Dinner idea: that ramen place near Hall B around 7 if we survive the keynote.",
+    "role": "user",
+    "timestamp": "2026-11-09T08:42:00",
+    "source": "seed"
+  },
+  {
+    "message_id": "seed-006",
+    "group_id": "crew-demo",
+    "sender": "Jordan",
+    "body": "Deal on ramen. Before that can we plan a shared afternoon block?",
+    "body_text": "Deal on ramen. Before that can we plan a shared afternoon block?",
+    "role": "user",
+    "timestamp": "2026-11-09T08:45:00",
+    "source": "seed"
+  },
+  {
+    "message_id": "seed-007",
+    "group_id": "crew-demo",
+    "sender": "Alex",
+    "body": "If we have to split after 3pm we can reconvene at Hall B.",
+    "body_text": "If we have to split after 3pm we can reconvene at Hall B.",
+    "role": "user",
+    "timestamp": "2026-11-09T08:48:00",
+    "source": "seed"
+  },
+  {
+    "message_id": "seed-008",
+    "group_id": "crew-demo",
+    "sender": "Sam",
+    "body": "Reminder: no dumping personal chat exports into the demo repo. Synthetic data only.",
+    "body_text": "Reminder: no dumping personal chat exports into the demo repo. Synthetic data only.",
+    "role": "user",
+    "timestamp": "2026-11-09T08:51:00",
+    "source": "seed"
+  },
+  {
+    "message_id": "seed-009",
+    "group_id": "crew-demo",
+    "sender": "CrewBot",
+    "body": "Hi crew \u2014 I can search talks by meaning, recall what you said in this chat, and draft a shared itinerary. Try: plan our afternoon \u2014 try to stick together",
+    "body_text": "Hi crew \u2014 I can search talks by meaning, recall what you said in this chat, and draft a shared itinerary. Try: plan our afternoon \u2014 try to stick together",
+    "role": "assistant",
+    "timestamp": "2026-11-09T08:54:00",
+    "source": "seed"
+  }
+]

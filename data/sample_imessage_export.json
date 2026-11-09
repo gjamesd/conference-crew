@@ -1,0 +1,17 @@
+[
+  {
+    "sender": "Alex",
+    "body": "Grabbing coffee before the eBPF security talk — save me a seat?",
+    "timestamp": "2026-11-09T10:05:00"
+  },
+  {
+    "sender": "Sam",
+    "body": "I'll be at the AI ethics session. Let's compare notes after.",
+    "timestamp": "2026-11-09T10:07:00"
+  },
+  {
+    "sender": "Jordan",
+    "body": "Platform engineering track looks stacked. Meet at Hall B at 3?",
+    "timestamp": "2026-11-09T10:09:00"
+  }
+]

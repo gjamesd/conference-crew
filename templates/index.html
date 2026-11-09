@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Conference Crew</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="atmosphere"></div>
+  <header class="top">
+    <div>
+      <p class="brand">Conference Crew</p>
+      <p class="tag">Find the right talk — together</p>
+    </div>
+    <nav>
+      <a href="/dashboard">Dashboard</a>
+      <a href="/docs" target="_blank" rel="noreferrer">API</a>
+    </nav>
+  </header>
+
+  <main class="layout">
+    <section class="chat-shell" aria-label="Crew group chat">
+      <div class="chat-header">
+        <div class="avatars" aria-hidden="true">
+          <span>A</span><span>S</span><span>J</span><span>B</span>
+        </div>
+        <div>
+          <h1>Crew Demo</h1>
+          <p class="subtle">Alex · Sam · Jordan · CrewBot · group <code id="groupId">{{ group_id }}</code></p>
+        </div>
+      </div>
+
+      <div id="messages" class="messages" role="log" aria-live="polite"></div>
+
+      <form id="composer" class="composer">
+        <label class="sr-only" for="sender">Sender</label>
+        <select id="sender" name="sender">
+          <option>Alex</option>
+          <option>Sam</option>
+          <option>Jordan</option>
+          <option selected>You</option>
+        </select>
+        <label class="sr-only" for="body">Message</label>
+        <input id="body" name="body" autocomplete="off" placeholder="Try: plan our afternoon — try to stick together" required />
+        <button type="submit">Send</button>
+      </form>
+      <div class="hints">
+        <button type="button" data-fill="plan our afternoon — try to stick together">Plan afternoon</button>
+        <button type="button" data-fill="what did we say about dinner?">Recall dinner</button>
+        <button type="button" data-fill="something on eBPF and security after lunch">eBPF search</button>
+        <button type="button" data-fill="compare: something on eBPF and security">Compare modes</button>
+        <button type="button" data-fill="plan our afternoon — split up">Split plan</button>
+      </div>
+    </section>
+
+    <aside class="side">
+      <h2>Why Elasticsearch</h2>
+      <p>Talks, chat, itineraries, and query logs live in ES. Jina <code>semantic_text</code> + hybrid RRF + time/geo + conflict-aware planning.</p>
+      <div id="status" class="status">Checking connection…</div>
+      <h2>Explainability</h2>
+      <div id="explain" class="explain">Send a message to see mode, scores, and filters.</div>
+      <div class="feedback" id="feedback" hidden>
+        <span>Was this useful?</span>
+        <button type="button" data-rating="up">Up</button>
+        <button type="button" data-rating="down">Down</button>
+      </div>
+      <h2>Raw meta</h2>
+      <pre id="meta" class="meta">—</pre>
+    </aside>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

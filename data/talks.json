@@ -1,0 +1,968 @@
+[
+  {
+    "talk_id": "talk-001",
+    "title": "eBPF for Security Observability",
+    "abstract": "Deep dive into using eBPF probes to detect suspicious syscalls, enforce runtime policies, and build low-overhead security telemetry without kernel modules.",
+    "abstract_text": "Deep dive into using eBPF probes to detect suspicious syscalls, enforce runtime policies, and build low-overhead security telemetry without kernel modules.",
+    "track": "security",
+    "speakers": [
+      "Priya Nair",
+      "Chris Okonkwo"
+    ],
+    "tags": [
+      "ebpf",
+      "security",
+      "observability"
+    ],
+    "room": "Hall A",
+    "location": {
+      "lat": 40.7616,
+      "lon": -111.8915
+    },
+    "start": "2026-11-09T09:00:00",
+    "end": "2026-11-09T09:45:00",
+    "day": "2026-11-09",
+    "level": "intro"
+  },
+  {
+    "talk_id": "talk-002",
+    "title": "Securing the Software Supply Chain with SBOMs",
+    "abstract": "How to generate, sign, and verify SBOMs across CI so your conference demos and production images stay trustworthy.",
+    "abstract_text": "How to generate, sign, and verify SBOMs across CI so your conference demos and production images stay trustworthy.",
+    "track": "security",
+    "speakers": [
+      "Maya Chen"
+    ],
+    "tags": [
+      "sbom",
+      "supply-chain",
+      "security"
+    ],
+    "room": "Hall B",
+    "location": {
+      "lat": 40.7611,
+      "lon": -111.8904
+    },
+    "start": "2026-11-09T10:30:00",
+    "end": "2026-11-09T11:15:00",
+    "day": "2026-11-09",
+    "level": "intermediate"
+  },
+  {
+    "talk_id": "talk-003",
+    "title": "Zero Trust Networking for Cloud Native Apps",
+    "abstract": "Practical zero-trust patterns with mTLS, identity-aware proxies, and policy engines that travel with your workloads.",
+    "abstract_text": "Practical zero-trust patterns with mTLS, identity-aware proxies, and policy engines that travel with your workloads.",
+    "track": "security",
+    "speakers": [
+      "Luis Ortega"
+    ],
+    "tags": [
+      "zero-trust",
+      "networking",
+      "security"
+    ],
+    "room": "Hall C",
+    "location": {
+      "lat": 40.7604,
+      "lon": -111.8908
+    },
+    "start": "2026-11-09T11:00:00",
+    "end": "2026-11-09T11:45:00",
+    "day": "2026-11-09",
+    "level": "advanced"
+  },
+  {
+    "talk_id": "talk-004",
+    "title": "AI Ethics Beyond the Checklist",
+    "abstract": "Move past slideware ethics: evaluate model risk, consent, and conference-grade demos that do not leak personal data.",
+    "abstract_text": "Move past slideware ethics: evaluate model risk, consent, and conference-grade demos that do not leak personal data.",
+    "track": "ai",
+    "speakers": [
+      "Sam Rivera",
+      "Dr. Aisha Rahman"
+    ],
+    "tags": [
+      "ethics",
+      "ai",
+      "governance"
+    ],
+    "room": "Room 101",
+    "location": {
+      "lat": 40.7618,
+      "lon": -111.8909
+    },
+    "start": "2026-11-09T12:30:00",
+    "end": "2026-11-09T13:15:00",
+    "day": "2026-11-09",
+    "level": "intro"
+  },
+  {
+    "talk_id": "talk-005",
+    "title": "Responsible RAG in Production",
+    "abstract": "Grounding, citation discipline, and refusal behavior so retrieval-augmented assistants stay useful and accountable.",
+    "abstract_text": "Grounding, citation discipline, and refusal behavior so retrieval-augmented assistants stay useful and accountable.",
+    "track": "ai",
+    "speakers": [
+      "Elena Voss"
+    ],
+    "tags": [
+      "rag",
+      "ethics",
+      "llm"
+    ],
+    "room": "Room 202",
+    "location": {
+      "lat": 40.7606,
+      "lon": -111.8917
+    },
+    "start": "2026-11-09T14:00:00",
+    "end": "2026-11-09T14:45:00",
+    "day": "2026-11-09",
+    "level": "intermediate"
+  },
+  {
+    "talk_id": "talk-006",
+    "title": "Multimodal Models for Developer Tools",
+    "abstract": "Using text-image-code models to explain architecture diagrams and accelerate debugging workflows.",
+    "abstract_text": "Using text-image-code models to explain architecture diagrams and accelerate debugging workflows.",
+    "track": "ai",
+    "speakers": [
+      "Jordan Lee"
+    ],
+    "tags": [
+      "multimodal",
+      "ai",
+      "dx"
+    ],
+    "room": "Ballroom",
+    "location": {
+      "lat": 40.7609,
+      "lon": -111.8911
+    },
+    "start": "2026-11-09T15:30:00",
+    "end": "2026-11-09T16:15:00",
+    "day": "2026-11-09",
+    "level": "advanced"
+  },
+  {
+    "talk_id": "talk-007",
+    "title": "Platform Engineering That Developers Love",
+    "abstract": "Design golden paths, self-service environments, and paved roads that shorten time-to-production without becoming a gatekeeping bottleneck.",
+    "abstract_text": "Design golden paths, self-service environments, and paved roads that shorten time-to-production without becoming a gatekeeping bottleneck.",
+    "track": "platform",
+    "speakers": [
+      "Alex Kim",
+      "Nina Patel"
+    ],
+    "tags": [
+      "platform",
+      "dx",
+      "golden-paths"
+    ],
+    "room": "Hall A",
+    "location": {
+      "lat": 40.7616,
+      "lon": -111.8915
+    },
+    "start": "2026-11-09T16:00:00",
+    "end": "2026-11-09T16:45:00",
+    "day": "2026-11-09",
+    "level": "intro"
+  },
+  {
+    "talk_id": "talk-008",
+    "title": "Internal Developer Platforms on Kubernetes",
+    "abstract": "Backstage, Crossplane, and scorecards: building an IDP that exposes environments as a product.",
+    "abstract_text": "Backstage, Crossplane, and scorecards: building an IDP that exposes environments as a product.",
+    "track": "platform",
+    "speakers": [
+      "Marcus Webb"
+    ],
+    "tags": [
+      "idp",
+      "kubernetes",
+      "platform"
+    ],
+    "room": "Hall B",
+    "location": {
+      "lat": 40.7611,
+      "lon": -111.8904
+    },
+    "start": "2026-11-09T17:30:00",
+    "end": "2026-11-09T18:15:00",
+    "day": "2026-11-09",
+    "level": "intermediate"
+  },
+  {
+    "talk_id": "talk-009",
+    "title": "GitOps at Scale with Argo CD",
+    "abstract": "Progressive delivery, app-of-apps, and promotion strategies that keep hundreds of services in sync.",
+    "abstract_text": "Progressive delivery, app-of-apps, and promotion strategies that keep hundreds of services in sync.",
+    "track": "platform",
+    "speakers": [
+      "Sofia Alvarez"
+    ],
+    "tags": [
+      "gitops",
+      "argo",
+      "kubernetes"
+    ],
+    "room": "Hall C",
+    "location": {
+      "lat": 40.7604,
+      "lon": -111.8908
+    },
+    "start": "2026-11-09T09:00:00",
+    "end": "2026-11-09T09:45:00",
+    "day": "2026-11-09",
+    "level": "advanced"
+  },
+  {
+    "talk_id": "talk-010",
+    "title": "Kubernetes Networking Deep Dive",
+    "abstract": "From kube-proxy to eBPF dataplanes: how packets move and what breaks when NetworkPolicies get creative.",
+    "abstract_text": "From kube-proxy to eBPF dataplanes: how packets move and what breaks when NetworkPolicies get creative.",
+    "track": "infrastructure",
+    "speakers": [
+      "Tom Hughes"
+    ],
+    "tags": [
+      "cni",
+      "networking",
+      "kubernetes"
+    ],
+    "room": "Room 101",
+    "location": {
+      "lat": 40.7618,
+      "lon": -111.8909
+    },
+    "start": "2026-11-09T10:30:00",
+    "end": "2026-11-09T11:15:00",
+    "day": "2026-11-09",
+    "level": "intro"
+  },
+  {
+    "talk_id": "talk-011",
+    "title": "eBPF-Powered Service Mesh Alternatives",
+    "abstract": "When Cilium and ambient meshes replace sidecars\u2014and how to migrate without a traffic black hole.",
+    "abstract_text": "When Cilium and ambient meshes replace sidecars\u2014and how to migrate without a traffic black hole.",
+    "track": "infrastructure",
+    "speakers": [
+      "Chris Okonkwo"
+    ],
+    "tags": [
+      "ebpf",
+      "service-mesh",
+      "cilium"
+    ],
+    "room": "Room 202",
+    "location": {
+      "lat": 40.7606,
+      "lon": -111.8917
+    },
+    "start": "2026-11-09T11:00:00",
+    "end": "2026-11-09T11:45:00",
+    "day": "2026-11-09",
+    "level": "intermediate"
+  },
+  {
+    "talk_id": "talk-012",
+    "title": "Observability with OpenTelemetry",
+    "abstract": "Traces, metrics, and logs as one signal language. Instrument a FastAPI service end to end in under an hour.",
+    "abstract_text": "Traces, metrics, and logs as one signal language. Instrument a FastAPI service end to end in under an hour.",
+    "track": "observability",
+    "speakers": [
+      "Riley Quinn"
+    ],
+    "tags": [
+      "otel",
+      "tracing",
+      "metrics"
+    ],
+    "room": "Ballroom",
+    "location": {
+      "lat": 40.7609,
+      "lon": -111.8911
+    },
+    "start": "2026-11-09T12:30:00",
+    "end": "2026-11-09T13:15:00",
+    "day": "2026-11-09",
+    "level": "advanced"
+  },
+  {
+    "talk_id": "talk-013",
+    "title": "SLO-Driven Incident Response",
+    "abstract": "Turn error budgets into actionable pages and postmortems that actually change the system.",
+    "abstract_text": "Turn error budgets into actionable pages and postmortems that actually change the system.",
+    "track": "observability",
+    "speakers": [
+      "Dana Brooks"
+    ],
+    "tags": [
+      "slo",
+      "sre",
+      "incidents"
+    ],
+    "room": "Hall A",
+    "location": {
+      "lat": 40.7616,
+      "lon": -111.8915
+    },
+    "start": "2026-11-09T14:00:00",
+    "end": "2026-11-09T14:45:00",
+    "day": "2026-11-09",
+    "level": "intro"
+  },
+  {
+    "talk_id": "talk-014",
+    "title": "Vector Search for Conference Discovery",
+    "abstract": "Hybrid keyword + dense retrieval patterns for schedules, abstracts, and hallway matchmaking.",
+    "abstract_text": "Hybrid keyword + dense retrieval patterns for schedules, abstracts, and hallway matchmaking.",
+    "track": "search",
+    "speakers": [
+      "Harper Cole"
+    ],
+    "tags": [
+      "vector",
+      "elasticsearch",
+      "semantic"
+    ],
+    "room": "Hall B",
+    "location": {
+      "lat": 40.7611,
+      "lon": -111.8904
+    },
+    "start": "2026-11-09T15:30:00",
+    "end": "2026-11-09T16:15:00",
+    "day": "2026-11-09",
+    "level": "intermediate"
+  },
+  {
+    "talk_id": "talk-015",
+    "title": "Semantic Search with Jina and Elasticsearch",
+    "abstract": "Use semantic_text fields and Elastic Inference Service so embeddings happen at ingest\u2014no custom ML ops required.",
+    "abstract_text": "Use semantic_text fields and Elastic Inference Service so embeddings happen at ingest\u2014no custom ML ops required.",
+    "track": "search",
+    "speakers": [
+      "Priya Nair"
+    ],
+    "tags": [
+      "jina",
+      "elasticsearch",
+      "semantic_text"
+    ],
+    "room": "Hall C",
+    "location": {
+      "lat": 40.7604,
+      "lon": -111.8908
+    },
+    "start": "2026-11-09T16:00:00",
+    "end": "2026-11-09T16:45:00",
+    "day": "2026-11-09",
+    "level": "advanced"
+  },
+  {
+    "talk_id": "talk-016",
+    "title": "Building Aggregations That Tell a Story",
+    "abstract": "Design Kibana and app dashboards that show track density, room pressure, and session conflicts.",
+    "abstract_text": "Design Kibana and app dashboards that show track density, room pressure, and session conflicts.",
+    "track": "search",
+    "speakers": [
+      "Luis Ortega"
+    ],
+    "tags": [
+      "aggregations",
+      "dashboards",
+      "analytics"
+    ],
+    "room": "Room 101",
+    "location": {
+      "lat": 40.7618,
+      "lon": -111.8909
+    },
+    "start": "2026-11-09T17:30:00",
+    "end": "2026-11-09T18:15:00",
+    "day": "2026-11-09",
+    "level": "intro"
+  },
+  {
+    "talk_id": "talk-017",
+    "title": "WASM on the Edge for APIs",
+    "abstract": "Ship portable filters and auth logic to the edge with WebAssembly runtimes.",
+    "abstract_text": "Ship portable filters and auth logic to the edge with WebAssembly runtimes.",
+    "track": "infrastructure",
+    "speakers": [
+      "Nina Patel"
+    ],
+    "tags": [
+      "wasm",
+      "edge",
+      "performance"
+    ],
+    "room": "Room 202",
+    "location": {
+      "lat": 40.7606,
+      "lon": -111.8917
+    },
+    "start": "2026-11-09T09:00:00",
+    "end": "2026-11-09T09:45:00",
+    "day": "2026-11-09",
+    "level": "intermediate"
+  },
+  {
+    "talk_id": "talk-018",
+    "title": "Cost-Aware Autoscaling on Kubernetes",
+    "abstract": "HPA, KEDA, and FinOps signals so your demo cluster does not melt the credit card.",
+    "abstract_text": "HPA, KEDA, and FinOps signals so your demo cluster does not melt the credit card.",
+    "track": "platform",
+    "speakers": [
+      "Marcus Webb"
+    ],
+    "tags": [
+      "autoscaling",
+      "finops",
+      "kubernetes"
+    ],
+    "room": "Ballroom",
+    "location": {
+      "lat": 40.7609,
+      "lon": -111.8911
+    },
+    "start": "2026-11-09T10:30:00",
+    "end": "2026-11-09T11:15:00",
+    "day": "2026-11-09",
+    "level": "advanced"
+  },
+  {
+    "talk_id": "talk-019",
+    "title": "Policy as Code with Kyverno and OPA",
+    "abstract": "Guardrails for images, labels, and network rules that fail closed in CI and the cluster.",
+    "abstract_text": "Guardrails for images, labels, and network rules that fail closed in CI and the cluster.",
+    "track": "security",
+    "speakers": [
+      "Maya Chen"
+    ],
+    "tags": [
+      "policy",
+      "opa",
+      "kyverno"
+    ],
+    "room": "Hall A",
+    "location": {
+      "lat": 40.7616,
+      "lon": -111.8915
+    },
+    "start": "2026-11-09T11:00:00",
+    "end": "2026-11-09T11:45:00",
+    "day": "2026-11-09",
+    "level": "intro"
+  },
+  {
+    "talk_id": "talk-020",
+    "title": "Debugging Latency with Continuous Profiling",
+    "abstract": "eBPF profilers that show why p99 jumped after the keynote traffic spike.",
+    "abstract_text": "eBPF profilers that show why p99 jumped after the keynote traffic spike.",
+    "track": "observability",
+    "speakers": [
+      "Riley Quinn"
+    ],
+    "tags": [
+      "profiling",
+      "performance",
+      "ebpf"
+    ],
+    "room": "Hall B",
+    "location": {
+      "lat": 40.7611,
+      "lon": -111.8904
+    },
+    "start": "2026-11-09T12:30:00",
+    "end": "2026-11-09T13:15:00",
+    "day": "2026-11-09",
+    "level": "intermediate"
+  },
+  {
+    "talk_id": "talk-021",
+    "title": "Agentic Workflows for Ops Teams",
+    "abstract": "MCP tools, runbooks, and human-in-the-loop approvals for agents that investigate and propose fixes.",
+    "abstract_text": "MCP tools, runbooks, and human-in-the-loop approvals for agents that investigate and propose fixes.",
+    "track": "ai",
+    "speakers": [
+      "Elena Voss",
+      "Jordan Lee"
+    ],
+    "tags": [
+      "agents",
+      "mcp",
+      "ops"
+    ],
+    "room": "Hall C",
+    "location": {
+      "lat": 40.7604,
+      "lon": -111.8908
+    },
+    "start": "2026-11-09T14:00:00",
+    "end": "2026-11-09T14:45:00",
+    "day": "2026-11-09",
+    "level": "advanced"
+  },
+  {
+    "talk_id": "talk-022",
+    "title": "Designing MCP Servers Developers Trust",
+    "abstract": "Tool schemas, least privilege, and evals so coding agents call the right APIs.",
+    "abstract_text": "Tool schemas, least privilege, and evals so coding agents call the right APIs.",
+    "track": "ai",
+    "speakers": [
+      "Harper Cole"
+    ],
+    "tags": [
+      "mcp",
+      "agents",
+      "dx"
+    ],
+    "room": "Room 101",
+    "location": {
+      "lat": 40.7618,
+      "lon": -111.8909
+    },
+    "start": "2026-11-09T15:30:00",
+    "end": "2026-11-09T16:15:00",
+    "day": "2026-11-09",
+    "level": "intro"
+  },
+  {
+    "talk_id": "talk-023",
+    "title": "Cloud Native Storage Pitfalls",
+    "abstract": "PVC performance, snapshot strategy, and the surprises waiting in stateful workloads.",
+    "abstract_text": "PVC performance, snapshot strategy, and the surprises waiting in stateful workloads.",
+    "track": "infrastructure",
+    "speakers": [
+      "Tom Hughes"
+    ],
+    "tags": [
+      "storage",
+      "csi",
+      "kubernetes"
+    ],
+    "room": "Room 202",
+    "location": {
+      "lat": 40.7606,
+      "lon": -111.8917
+    },
+    "start": "2026-11-09T16:00:00",
+    "end": "2026-11-09T16:45:00",
+    "day": "2026-11-09",
+    "level": "intermediate"
+  },
+  {
+    "talk_id": "talk-024",
+    "title": "Hallway Track: Finding Your People",
+    "abstract": "How vector profiles of interests help attendees find collaborators before the next coffee break.",
+    "abstract_text": "How vector profiles of interests help attendees find collaborators before the next coffee break.",
+    "track": "community",
+    "speakers": [
+      "Dana Brooks"
+    ],
+    "tags": [
+      "networking",
+      "community",
+      "matchmaking"
+    ],
+    "room": "Ballroom",
+    "location": {
+      "lat": 40.7609,
+      "lon": -111.8911
+    },
+    "start": "2026-11-09T17:30:00",
+    "end": "2026-11-09T18:15:00",
+    "day": "2026-11-09",
+    "level": "advanced"
+  },
+  {
+    "talk_id": "talk-025",
+    "title": "Inclusive Conference Design",
+    "abstract": "Captioning, quiet rooms, and schedule UX that works for neurodiverse and remote-hybrid attendees.",
+    "abstract_text": "Captioning, quiet rooms, and schedule UX that works for neurodiverse and remote-hybrid attendees.",
+    "track": "community",
+    "speakers": [
+      "Dr. Aisha Rahman"
+    ],
+    "tags": [
+      "accessibility",
+      "inclusion",
+      "community"
+    ],
+    "room": "Hall A",
+    "location": {
+      "lat": 40.7616,
+      "lon": -111.8915
+    },
+    "start": "2026-11-09T09:00:00",
+    "end": "2026-11-09T09:45:00",
+    "day": "2026-11-09",
+    "level": "intro"
+  },
+  {
+    "talk_id": "talk-026",
+    "title": "From Monolith to Microservices Without Tears",
+    "abstract": "Strangler patterns, contract tests, and platform support that keep migrations boring.",
+    "abstract_text": "Strangler patterns, contract tests, and platform support that keep migrations boring.",
+    "track": "platform",
+    "speakers": [
+      "Alex Kim"
+    ],
+    "tags": [
+      "migration",
+      "architecture",
+      "platform"
+    ],
+    "room": "Hall B",
+    "location": {
+      "lat": 40.7611,
+      "lon": -111.8904
+    },
+    "start": "2026-11-09T10:30:00",
+    "end": "2026-11-09T11:15:00",
+    "day": "2026-11-09",
+    "level": "intermediate"
+  },
+  {
+    "talk_id": "talk-027",
+    "title": "Supply Chain Attacks You Can Demo Safely",
+    "abstract": "Teaching threat models with sanitized examples\u2014never live credentials or private chat dumps.",
+    "abstract_text": "Teaching threat models with sanitized examples\u2014never live credentials or private chat dumps.",
+    "track": "security",
+    "speakers": [
+      "Chris Okonkwo"
+    ],
+    "tags": [
+      "security",
+      "demo",
+      "supply-chain"
+    ],
+    "room": "Hall C",
+    "location": {
+      "lat": 40.7604,
+      "lon": -111.8908
+    },
+    "start": "2026-11-09T11:00:00",
+    "end": "2026-11-09T11:45:00",
+    "day": "2026-11-09",
+    "level": "advanced"
+  },
+  {
+    "talk_id": "talk-028",
+    "title": "Time-Series Analytics for Live Events",
+    "abstract": "Index check-ins and session starts as time-series data to spot overcrowded rooms early.",
+    "abstract_text": "Index check-ins and session starts as time-series data to spot overcrowded rooms early.",
+    "track": "search",
+    "speakers": [
+      "Sofia Alvarez"
+    ],
+    "tags": [
+      "time-series",
+      "analytics",
+      "events"
+    ],
+    "room": "Room 101",
+    "location": {
+      "lat": 40.7618,
+      "lon": -111.8909
+    },
+    "start": "2026-11-09T12:30:00",
+    "end": "2026-11-09T13:15:00",
+    "day": "2026-11-09",
+    "level": "intro"
+  },
+  {
+    "talk_id": "talk-029",
+    "title": "Geo Queries for Venue Wayfinding",
+    "abstract": "geo_point filters that answer: what is free near Hall B in the next hour?",
+    "abstract_text": "geo_point filters that answer: what is free near Hall B in the next hour?",
+    "track": "search",
+    "speakers": [
+      "Luis Ortega"
+    ],
+    "tags": [
+      "geo",
+      "maps",
+      "elasticsearch"
+    ],
+    "room": "Room 202",
+    "location": {
+      "lat": 40.7606,
+      "lon": -111.8917
+    },
+    "start": "2026-11-09T14:00:00",
+    "end": "2026-11-09T14:45:00",
+    "day": "2026-11-09",
+    "level": "intermediate"
+  },
+  {
+    "talk_id": "talk-030",
+    "title": "CI Pipelines That Review Themselves",
+    "abstract": "Agent-assisted PR review that enforces schedule timezone rules and API contract drift.",
+    "abstract_text": "Agent-assisted PR review that enforces schedule timezone rules and API contract drift.",
+    "track": "platform",
+    "speakers": [
+      "Sam Rivera"
+    ],
+    "tags": [
+      "ci",
+      "code-review",
+      "automation"
+    ],
+    "room": "Ballroom",
+    "location": {
+      "lat": 40.7609,
+      "lon": -111.8911
+    },
+    "start": "2026-11-09T15:30:00",
+    "end": "2026-11-09T16:15:00",
+    "day": "2026-11-09",
+    "level": "advanced"
+  },
+  {
+    "talk_id": "talk-031",
+    "title": "Runtime Security with Falco and eBPF",
+    "abstract": "Detect crypto miners and unexpected shell spawns with rules tuned for conference Wi-Fi chaos.",
+    "abstract_text": "Detect crypto miners and unexpected shell spawns with rules tuned for conference Wi-Fi chaos.",
+    "track": "security",
+    "speakers": [
+      "Priya Nair"
+    ],
+    "tags": [
+      "falco",
+      "ebpf",
+      "runtime"
+    ],
+    "room": "Hall A",
+    "location": {
+      "lat": 40.7616,
+      "lon": -111.8915
+    },
+    "start": "2026-11-09T16:00:00",
+    "end": "2026-11-09T16:45:00",
+    "day": "2026-11-09",
+    "level": "intro"
+  },
+  {
+    "talk_id": "talk-032",
+    "title": "LLM Evaluation for Retrieval Quality",
+    "abstract": "Offline and online evals that prove your talk recommender is not just confidently wrong.",
+    "abstract_text": "Offline and online evals that prove your talk recommender is not just confidently wrong.",
+    "track": "ai",
+    "speakers": [
+      "Elena Voss"
+    ],
+    "tags": [
+      "eval",
+      "rag",
+      "llm"
+    ],
+    "room": "Hall B",
+    "location": {
+      "lat": 40.7611,
+      "lon": -111.8904
+    },
+    "start": "2026-11-09T17:30:00",
+    "end": "2026-11-09T18:15:00",
+    "day": "2026-11-09",
+    "level": "intermediate"
+  },
+  {
+    "talk_id": "talk-033",
+    "title": "Progressive Delivery with Feature Flags",
+    "abstract": "Ship dark launches for schedule features and roll back without redeploying the whole app.",
+    "abstract_text": "Ship dark launches for schedule features and roll back without redeploying the whole app.",
+    "track": "platform",
+    "speakers": [
+      "Nina Patel"
+    ],
+    "tags": [
+      "feature-flags",
+      "delivery",
+      "dx"
+    ],
+    "room": "Hall C",
+    "location": {
+      "lat": 40.7604,
+      "lon": -111.8908
+    },
+    "start": "2026-11-09T09:00:00",
+    "end": "2026-11-09T09:45:00",
+    "day": "2026-11-09",
+    "level": "advanced"
+  },
+  {
+    "talk_id": "talk-034",
+    "title": "Chaos Engineering for Demo Day",
+    "abstract": "Inject latency safely so you can show your SRE agent finding the root cause live.",
+    "abstract_text": "Inject latency safely so you can show your SRE agent finding the root cause live.",
+    "track": "observability",
+    "speakers": [
+      "Dana Brooks"
+    ],
+    "tags": [
+      "chaos",
+      "reliability",
+      "demo"
+    ],
+    "room": "Room 101",
+    "location": {
+      "lat": 40.7618,
+      "lon": -111.8909
+    },
+    "start": "2026-11-09T10:30:00",
+    "end": "2026-11-09T11:15:00",
+    "day": "2026-11-09",
+    "level": "intro"
+  },
+  {
+    "talk_id": "talk-035",
+    "title": "Building a Conference RAG Assistant",
+    "abstract": "Index abstracts, rooms, and times; answer natural language questions with citations back to sessions.",
+    "abstract_text": "Index abstracts, rooms, and times; answer natural language questions with citations back to sessions.",
+    "track": "ai",
+    "speakers": [
+      "Jordan Lee",
+      "Harper Cole"
+    ],
+    "tags": [
+      "rag",
+      "conference",
+      "assistant"
+    ],
+    "room": "Room 202",
+    "location": {
+      "lat": 40.7606,
+      "lon": -111.8917
+    },
+    "start": "2026-11-09T11:00:00",
+    "end": "2026-11-09T11:45:00",
+    "day": "2026-11-09",
+    "level": "intermediate"
+  },
+  {
+    "talk_id": "talk-036",
+    "title": "Multi-Interest Itinerary Planning",
+    "abstract": "Reconcile conflicting interests in a friend group and propose stick-together or split-and-reconvene plans.",
+    "abstract_text": "Reconcile conflicting interests in a friend group and propose stick-together or split-and-reconvene plans.",
+    "track": "community",
+    "speakers": [
+      "Alex Kim",
+      "Sam Rivera"
+    ],
+    "tags": [
+      "planning",
+      "recommendations",
+      "group"
+    ],
+    "room": "Ballroom",
+    "location": {
+      "lat": 40.7609,
+      "lon": -111.8911
+    },
+    "start": "2026-11-09T12:30:00",
+    "end": "2026-11-09T13:15:00",
+    "day": "2026-11-09",
+    "level": "advanced"
+  },
+  {
+    "talk_id": "talk-037",
+    "title": "Kubernetes Admission Controllers in Practice",
+    "abstract": "Write and test validating webhooks that block privileged pods before they hit the node.",
+    "abstract_text": "Write and test validating webhooks that block privileged pods before they hit the node.",
+    "track": "security",
+    "speakers": [
+      "Maya Chen"
+    ],
+    "tags": [
+      "admission",
+      "kubernetes",
+      "security"
+    ],
+    "room": "Hall A",
+    "location": {
+      "lat": 40.7616,
+      "lon": -111.8915
+    },
+    "start": "2026-11-09T14:00:00",
+    "end": "2026-11-09T14:45:00",
+    "day": "2026-11-09",
+    "level": "intro"
+  },
+  {
+    "talk_id": "talk-038",
+    "title": "Tracing LLM Calls with OpenLIT",
+    "abstract": "See every prompt, token, and dollar so your conference assistant stays within the free credit budget.",
+    "abstract_text": "See every prompt, token, and dollar so your conference assistant stays within the free credit budget.",
+    "track": "observability",
+    "speakers": [
+      "Riley Quinn"
+    ],
+    "tags": [
+      "llm",
+      "otel",
+      "cost"
+    ],
+    "room": "Hall B",
+    "location": {
+      "lat": 40.7611,
+      "lon": -111.8904
+    },
+    "start": "2026-11-09T15:30:00",
+    "end": "2026-11-09T16:15:00",
+    "day": "2026-11-09",
+    "level": "intermediate"
+  },
+  {
+    "talk_id": "talk-039",
+    "title": "Service Level Objectives for Search APIs",
+    "abstract": "Define latency and relevance SLOs for hybrid search endpoints under keynote load.",
+    "abstract_text": "Define latency and relevance SLOs for hybrid search endpoints under keynote load.",
+    "track": "search",
+    "speakers": [
+      "Harper Cole"
+    ],
+    "tags": [
+      "slo",
+      "search",
+      "latency"
+    ],
+    "room": "Hall C",
+    "location": {
+      "lat": 40.7604,
+      "lon": -111.8908
+    },
+    "start": "2026-11-09T16:00:00",
+    "end": "2026-11-09T16:45:00",
+    "day": "2026-11-09",
+    "level": "advanced"
+  },
+  {
+    "talk_id": "talk-040",
+    "title": "Networking Breakfast: Platform vs Product",
+    "abstract": "A facilitated discussion on where platform teams end and product ownership begins.",
+    "abstract_text": "A facilitated discussion on where platform teams end and product ownership begins.",
+    "track": "community",
+    "speakers": [
+      "Marcus Webb"
+    ],
+    "tags": [
+      "networking",
+      "platform",
+      "product"
+    ],
+    "room": "Room 101",
+    "location": {
+      "lat": 40.7618,
+      "lon": -111.8909
+    },
+    "start": "2026-11-09T17:30:00",
+    "end": "2026-11-09T18:15:00",
+    "day": "2026-11-09",
+    "level": "intro"
+  }
+]

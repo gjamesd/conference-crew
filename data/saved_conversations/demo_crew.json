@@ -1,0 +1,64 @@
+{
+  "name": "demo_crew",
+  "group_id": "crew-demo",
+  "created_at": "2026-11-09T18:35:10.558477",
+  "source": "fixture",
+  "notes": "Saved conversation for replay without burning OpenAI credits.",
+  "messages": [
+    {
+      "sender": "Alex",
+      "body": "I'm hunting eBPF + runtime security talks today.",
+      "timestamp": "2026-11-09T08:30:00",
+      "expect": null
+    },
+    {
+      "sender": "Sam",
+      "body": "Keep AI ethics / responsible RAG on the list \u2014 no hype-only sessions.",
+      "timestamp": "2026-11-09T08:32:00",
+      "expect": null
+    },
+    {
+      "sender": "Jordan",
+      "body": "Platform engineering + IDP golden paths for me.",
+      "timestamp": "2026-11-09T08:34:00",
+      "expect": null
+    },
+    {
+      "sender": "Alex",
+      "body": "Let's stick together for the afternoon if we can.",
+      "timestamp": "2026-11-09T08:36:00",
+      "expect": null
+    },
+    {
+      "sender": "Sam",
+      "body": "Dinner: ramen near Hall B around 7 after the keynote.",
+      "timestamp": "2026-11-09T08:38:00",
+      "expect": null
+    },
+    {
+      "sender": "Jordan",
+      "body": "Ramen works. Can CrewBot plan a shared afternoon block?",
+      "timestamp": "2026-11-09T08:40:00",
+      "expect": null
+    },
+    {
+      "sender": "You",
+      "body": "plan our afternoon \u2014 try to stick together",
+      "timestamp": "2026-11-09T08:42:00",
+      "expect": "plan"
+    },
+    {
+      "sender": "You",
+      "body": "what did we say about dinner?",
+      "timestamp": "2026-11-09T08:44:00",
+      "expect": "recall"
+    },
+    {
+      "sender": "You",
+      "body": "something on eBPF and security after lunch",
+      "timestamp": "2026-11-09T08:46:00",
+      "expect": "search"
+    }
+  ],
+  "recorded_replies": []
+}

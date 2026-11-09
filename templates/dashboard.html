@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Crew Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="atmosphere"></div>
+  <header class="top">
+    <div>
+      <p class="brand">Conference Crew</p>
+      <p class="tag">Aggregations from Elasticsearch</p>
+    </div>
+    <nav>
+      <a href="/">Chat</a>
+      <a href="/docs" target="_blank" rel="noreferrer">API</a>
+    </nav>
+  </header>
+
+  <main class="dash">
+    <h1>Schedule pulse</h1>
+    <p class="lede">Track density and hourly load — built with ES aggregations.</p>
+    <div id="error" class="status" hidden></div>
+    <section class="dash-grid">
+      <article>
+        <h2>By track</h2>
+        <ul id="byTrack"></ul>
+      </article>
+      <article>
+        <h2>By hour</h2>
+        <ul id="byHour"></ul>
+      </article>
+      <article>
+        <h2>By room</h2>
+        <ul id="byRoom"></ul>
+      </article>
+      <article>
+        <h2>Queries by mode</h2>
+        <ul id="byMode"></ul>
+      </article>
+      <article class="wide">
+        <h2>Recent crew queries</h2>
+        <ul id="recentQueries" class="recent"></ul>
+      </article>
+    </section>
+  </main>
+  <script>
+    async function load() {
+      const err = document.getElementById("error");
+      try {
+        const res = await fetch("/api/stats");
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.detail || "stats failed");
+        const fill = (id, rows) => {
+          const el = document.getElementById(id);
+          el.innerHTML = (rows || []).map(r => {
+            const width = Math.min(100, (r.count || 0) * 12);
+            return `<li><span>${r.key}</span><div class="bar"><i style="width:${width}%"></i></div><b>${r.count}</b></li>`;
+          }).join("");
+        };
+        fill("byTrack", data.by_track);
+        fill("byHour", data.by_hour);
+        fill("byRoom", data.by_room);
+        fill("byMode", (data.queries || {}).by_mode || []);
+        const recent = document.getElementById("recentQueries");
+        recent.innerHTML = ((data.queries || {}).recent || []).map(r =>
+          `<li><b>${r.mode || "?"}</b> <code>${r.kind || ""}</code> ${r.query || ""}</li>`
+        ).join("") || "<li>No queries logged yet.</li>";
+      } catch (e) {
+        err.hidden = false;
+        err.textContent = String(e.message || e);
+      }
+    }
+    load();
+  </script>
+</body>
+</html>

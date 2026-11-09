@@ -1,0 +1,52 @@
+[
+  {
+    "id": "gq-01",
+    "query": "something on eBPF and security",
+    "relevant_talk_ids": ["talk-001", "talk-011", "talk-031"]
+  },
+  {
+    "id": "gq-02",
+    "query": "responsible RAG and AI ethics",
+    "relevant_talk_ids": ["talk-004", "talk-005", "talk-032"]
+  },
+  {
+    "id": "gq-03",
+    "query": "internal developer platform golden paths",
+    "relevant_talk_ids": ["talk-007", "talk-008", "talk-026"]
+  },
+  {
+    "id": "gq-04",
+    "query": "OpenTelemetry tracing metrics",
+    "relevant_talk_ids": ["talk-012", "talk-038"]
+  },
+  {
+    "id": "gq-05",
+    "query": "vector search Jina elasticsearch semantic",
+    "relevant_talk_ids": ["talk-014", "talk-015", "talk-035"]
+  },
+  {
+    "id": "gq-06",
+    "query": "geo queries near rooms venue wayfinding",
+    "relevant_talk_ids": ["talk-029"]
+  },
+  {
+    "id": "gq-07",
+    "query": "group itinerary planning conflicting interests",
+    "relevant_talk_ids": ["talk-036"]
+  },
+  {
+    "id": "gq-08",
+    "query": "runtime security falco suspicious syscalls",
+    "relevant_talk_ids": ["talk-001", "talk-031"]
+  },
+  {
+    "id": "gq-09",
+    "query": "MCP tools for coding agents",
+    "relevant_talk_ids": ["talk-021", "talk-022"]
+  },
+  {
+    "id": "gq-10",
+    "query": "GitOps Argo CD progressive delivery",
+    "relevant_talk_ids": ["talk-009"]
+  }
+]
