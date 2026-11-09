@@ -87,3 +87,19 @@ FEEDBACK_MAPPING = {
         }
     }
 }
+
+LLM_CACHE_MAPPING = {
+    "mappings": {
+        "properties": {
+            "cache_key": {"type": "keyword"},
+            "intent": {"type": "keyword"},
+            "mode": {"type": "keyword"},
+            "query": {"type": "text"},
+            "answer": {"type": "text"},
+            "model": {"type": "keyword"},
+            "talk_ids": {"type": "keyword"},
+            "message_ids": {"type": "keyword"},
+            "created_at": {"type": "date"},
+        }
+    }
+}

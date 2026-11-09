@@ -8,6 +8,7 @@ from app.config import get_settings
 from app.mappings import (
     FEEDBACK_MAPPING,
     ITINERARIES_MAPPING,
+    LLM_CACHE_MAPPING,
     MESSAGES_MAPPING,
     QUERY_LOGS_MAPPING,
     TALKS_MAPPING,
@@ -43,6 +44,7 @@ def ensure_indices(es: Elasticsearch | None = None) -> dict[str, bool]:
         (settings.itineraries_index, ITINERARIES_MAPPING),
         (settings.query_logs_index, QUERY_LOGS_MAPPING),
         (settings.feedback_index, FEEDBACK_MAPPING),
+        (settings.llm_cache_index, LLM_CACHE_MAPPING),
     ):
         if es.indices.exists(index=name):
             created[name] = False

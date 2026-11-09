@@ -5,12 +5,12 @@ from pathlib import Path
 from typing import Any, Literal, Optional
 
 from fastapi import FastAPI, HTTPException, Query, Request
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel, Field
 
-from app.chat import post_user_message
+from app.chat import post_user_message, stream_user_message
 from app.compare import compare_talk_search
 from app.config import get_settings
 from app.es_client import ElasticsearchNotConfigured, ensure_indices, get_es
@@ -248,6 +248,31 @@ def api_post_message(group_id: str, body: ChatPostRequest) -> dict[str, Any]:
     if not body.body.strip():
         raise HTTPException(status_code=400, detail="body is required")
     return post_user_message(es, group_id=group_id, sender=body.sender, body=body.body.strip())
+
+
+@app.post("/api/groups/{group_id}/messages/stream")
+def api_post_message_stream(group_id: str, body: ChatPostRequest) -> StreamingResponse:
+    es = _es_or_503()
+    if not body.body.strip():
+        raise HTTPException(status_code=400, detail="body is required")
+
+    def event_source():
+        yield from stream_user_message(
+            es,
+            group_id=group_id,
+            sender=body.sender,
+            body=body.body.strip(),
+        )
+
+    return StreamingResponse(
+        event_source(),
+        media_type="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache",
+            "Connection": "keep-alive",
+            "X-Accel-Buffering": "no",
+        },
+    )
 
 
 @app.get("/api/stats")

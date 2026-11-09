@@ -18,6 +18,7 @@ class Settings(BaseSettings):
     itineraries_index: str = "itineraries"
     query_logs_index: str = "query_logs"
     feedback_index: str = "feedback"
+    llm_cache_index: str = "llm_cache"
 
     host: str = "0.0.0.0"
     port: int = 8000

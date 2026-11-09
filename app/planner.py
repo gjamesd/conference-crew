@@ -275,6 +275,9 @@ def build_crew_plan(
         f"Conflicts skipped while packing schedule: {conflicts_resolved}.",
         itinerary,
         chat_hits,
+        es=es,
+        intent="plan",
+        mode="hybrid",
     )
 
     itinerary_id = f"itin-{uuid.uuid4().hex[:10]}"

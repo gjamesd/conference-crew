@@ -2,10 +2,11 @@
 
 ## Setup before judges walk up
 
-1. Elastic Serverless project running; `.env` filled
-2. `python scripts/ingest.py` completed
+1. Elastic Serverless project running; `.env` filled (`OPENAI_API_KEY` + `gpt-4o-mini`)
+2. `python scripts/ingest.py` completed (includes `llm_cache` index)
 3. `uvicorn app.main:app --host 0.0.0.0 --port 8000`
-4. Browser on http://localhost:8000 and http://localhost:8000/dashboard
+4. Browser on http://localhost:8000 — chat uses **SSE streaming**
+5. Ask the same question twice to show **cache hit** (no second spend)
 
 ## Talk track
 

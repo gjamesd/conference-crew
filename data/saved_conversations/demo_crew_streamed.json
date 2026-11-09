@@ -1,0 +1,149 @@
+{
+  "name": "demo_crew_streamed",
+  "group_id": "crew-demo",
+  "created_at": "2026-11-09T19:54:56.044882",
+  "source": "live_sse_smoke",
+  "notes": "Polished demo capture from first live SSE run (template path until OPENAI_API_KEY is set). Events: status\u2192explanation\u2192talks\u2192token\u2192done.",
+  "messages": [
+    {
+      "sender": "You",
+      "body": "compare: something on eBPF and security after lunch"
+    },
+    {
+      "sender": "You",
+      "body": "what did we say about dinner?"
+    },
+    {
+      "sender": "You",
+      "body": "plan our afternoon \u2014 try to stick together"
+    }
+  ],
+  "recorded_replies": [
+    {
+      "user": {
+        "sender": "You",
+        "body": "compare: something on eBPF and security after lunch"
+      },
+      "bot_body": "**Search mode compare** (keyword vs semantic/Jina vs hybrid RRF)\nSemantic/Jina found 3 talk(s) keyword missed: talk-003, talk-010, talk-020. Keyword found 3 exact-ish hit(s) semantic ranked lower/out: talk-011, talk-017, talk-031. Hybrid kept meaning matches keyword missed: talk-020.\n\n**keyword**\n\u2022 talk-031 \u00b7 Runtime Security with Falco and eBPF (score=19.388588, Hall A, 2026-11-09T16:00:00)\n\u2022 talk-001 \u00b7 eBPF for Security Observability (score=15.130608, Hall A, 2026-11-09T09:00:00)\n\u2022 talk-017 \u00b7 WASM on the Edge for APIs (score=7.9225197, Room 202, 2026-11-09T09:00:00)\n\u2022 talk-011 \u00b7 eBPF-Powered Service Mesh Alternatives (score=7.3819513, Room 202, 2026-11-09T11:00:00)\n\n**semantic**\n\u2022 talk-001 \u00b7 eBPF for Security Observability (score=0.8118831, Hall A, 2026-11-09T09:00:00)\n\u2022 talk-020 \u00b7 Debugging Latency with Continuous Profiling (score=0.78150856, Hall B, 2026-11-09T12:30:00)\n\u2022 talk-010 \u00b7 Kubernetes Networking Deep Dive (score=0.72969663, Room 101, 2026-11-09T10:30:00)\n\u2022 talk-003 \u00b7 Zero Trust Networking for Cloud Native Apps (score=0.7145661, Hall C, 2026-11-09T11:00:00)\n\n**hybrid**\n\u2022 talk-001 \u00b7 eBPF for Security Observability (score=0.032522473, Hall A, 2026-11-09T09:00:00)\n\u2022 talk-031 \u00b7 Runtime Security with Falco and eBPF (score=0.031778056, Hall A, 2026-11-09T16:00:00)\n\u2022 talk-020 \u00b7 Debugging Latency with Continuous Profiling (score=0.030621786, Hall B, 2026-11-09T12:30:00)\n\u2022 talk-017 \u00b7 WASM on the Edge for APIs (score=0.0305789, Room 202, 2026-11-09T09:00:00)",
+      "events": [
+        "status",
+        "status",
+        "explanation",
+        "talks",
+        "token",
+        "done"
+      ]
+    },
+    {
+      "user": {
+        "sender": "You",
+        "body": "what did we say about dinner?"
+      },
+      "bot_body": "Based on Elasticsearch retrieval for: \u201cwhat did we say about dinner?\u201d\n\n**Talks that match:**\n\u2022 **LLM Evaluation for Retrieval Quality** (Hall B, 2026-11-09T17:30:00) \u2014 Offline and online evals that prove your talk recommender is not just confidently wrong.\n\u2022 **CI Pipelines That Review Themselves** (Ballroom, 2026-11-09T15:30:00) \u2014 Agent-assisted PR review that enforces schedule timezone rules and API contract drift.\n\u2022 **Inclusive Conference Design** (Hall A, 2026-11-09T09:00:00) \u2014 Captioning, quiet rooms, and schedule UX that works for neurodiverse and remote-hybrid attendees.\n\u2022 **SLO-Driven Incident Response** (Hall A, 2026-11-09T14:00:00) \u2014 Turn error budgets into actionable pages and postmortems that actually change the system.\n\n**From your crew chat:**\n\u2022 You: what did we say about dinner?\n\u2022 CrewBot: Based on Elasticsearch retrieval for: \u201cwhat did we say about dinner?\u201d\n\n**Talks that match:**\n\u2022 **LLM Evaluation for Retrieval Quality** (Hall B, 2026-11-09T17:30:00) \u2014 Offline and online evals that prove your talk recommender is not just confidently wrong.\n\u2022 **CI Pipelines That Review Themselves** (Ballroom, 2026-11-09T15:30:00) \u2014 Agent-assisted PR review that enforces schedule timezone rules and API contract drift.\n\u2022 **Inclusive Conference Design** (Hall A, 2026-11-09T09:00:00) \u2014 Captioning, quiet rooms, and schedule UX that works for neurodiverse and remote-hybrid attendees.\n\u2022 **SLO-Driven Incident Response** (Hall A, 2026-11-09T14:00:00) \u2014 Turn error budgets into actionable pages and postmortems that actually change the system.\n\n**From your crew chat:**\n\u2022 You: what did we say about dinner?\n\u2022 Sam: Dinner idea: that ramen place near Hall B around 7 if we survive the keynote.\n\u2022 CrewBot: Hi crew \u2014 I can search talks by meaning, recall what you said in this chat, and draft a shared itinerary. Try: plan our afternoon \u2014 try to stick together\n\u2022 You: what did we say about dinner?",
+      "events": [
+        "status",
+        "status",
+        "explanation",
+        "talks",
+        "token",
+        "done"
+      ]
+    },
+    {
+      "user": {
+        "sender": "You",
+        "body": "plan our afternoon \u2014 try to stick together"
+      },
+      "bot_body": "Based on Elasticsearch retrieval for: \u201cCreate a stick_together afternoon plan for the crew. Request: plan our afternoon \u2014 try to stick together. Conflicts skipped while packing schedule: 11.\u201d\n\n**Talks that match:**\n\u2022 **Internal Developer Platforms on Kubernetes** (Hall B, 2026-11-09T17:30:00) \u2014 Backstage, Crossplane, and scorecards: building an IDP that exposes environments as a product.\n\u2022 **CI Pipelines That Review Themselves** (Ballroom, 2026-11-09T15:30:00) \u2014 Agent-assisted PR review that enforces schedule timezone rules and API contract drift.\n\u2022 **Responsible RAG in Production** (Room 202, 2026-11-09T14:00:00) \u2014 Grounding, citation discipline, and refusal behavior so retrieval-augmented assistants stay useful and accountable.\n\n**From your crew chat:**\n\u2022 Sam: Dinner idea: that ramen place near Hall B around 7 if we survive the keynote.\n\u2022 Jordan: Deal on ramen. Before that can we plan a shared afternoon block?\n\u2022 CrewBot: Based on Elasticsearch retrieval for: \u201cwhat did we say about dinner?\u201d\n\n**Talks that match:**\n\u2022 **LLM Evaluation for Retrieval Quality** (Hall B, 2026-11-09T17:30:00) \u2014 Offline and online evals that prove your talk recommender is not just confidently wrong.\n\u2022 **CI Pipelines That Review Themselves** (Ballroom, 2026-11-09T15:30:00) \u2014 Agent-assisted PR review that enforces schedule timezone rules and API contract drift.\n\u2022 **Inclusive Conference Design** (Hall A, 2026-11-09T09:00:00) \u2014 Captioning, quiet rooms, and schedule UX that works for neurodiverse and remote-hybrid attendees.\n\u2022 **SLO-Driven Incident Response** (Hall A, 2026-11-09T14:00:00) \u2014 Turn error budgets into actionable pages and postmortems that actually change the system.\n\n**From your crew chat:**\n\u2022 You: what did we say about dinner?\n\u2022 Sam: Dinner idea: that ramen place near Hall B around 7 if we survive the keynote.\n\u2022 CrewBot: Hi crew \u2014 I can search talks by meaning, recall what you said in this chat, and draft a shared itinerary. Try: plan our afternoon \u2014 try to stick together\n\u2022 Jordan: Platform engineering + IDP stuff for me. Golden paths > more YAML.\n\u2022 CrewBot: Based on Elasticsearch retrieval for: \u201cwhat did we say about dinner?\u201d\n\n**Talks that match:**\n\u2022 **LLM Evaluation for Retrieval Quality** (Hall B, 2026-11-09T17:30:00) \u2014 Offline and online evals that prove your talk recommender is not just confidently wrong.\n\u2022 **CI Pipelines That Review Themselves** (Ballroom, 2026-11-09T15:30:00) \u2014 Agent-assisted PR review that enforces schedule timezone rules and API contract drift.\n\u2022 **Inclusive Conference Design** (Hall A, 2026-11-09T09:00:00) \u2014 Captioning, quiet rooms, and schedule UX that works for neurodiverse and remote-hybrid attendees.\n\u2022 **SLO-Driven Incident Response** (Hall A, 2026-11-09T14:00:00) \u2014 Turn error budgets into actionable pages and postmortems that actually change the system.\n\n**From your crew chat:**\n\u2022 You: what did we say about dinner?\n\u2022 CrewBot: Based on Elasticsearch retrieval for: \u201cwhat did we say about dinner?\u201d\n\n**Talks that match:**\n\u2022 **LLM Evaluation for Retrieval Quality** (Hall B, 2026-11-09T17:30:00) \u2014 Offline and online evals that prove your talk recommender is not just confidently wrong.\n\u2022 **CI Pipelines That Review Themselves** (Ballroom, 2026-11-09T15:30:00) \u2014 Agent-assisted PR review that enforces schedule timezone rules and API contract drift.\n\u2022 **Inclusive Conference Design** (Hall A, 2026-11-09T09:00:00) \u2014 Captioning, quiet rooms, and schedule UX that works for neurodiverse and remote-hybrid attendees.\n\u2022 **SLO-Driven Incident Response** (Hall A, 2026-11-09T14:00:00) \u2014 Turn error budgets into actionable pages and postmortems that actually change the system.\n\n**From your crew chat:**\n\u2022 You: what did we say about dinner?\n\u2022 Sam: Dinner idea: that ramen place near Hall B around 7 if we survive the keynote.\n\u2022 CrewBot: Hi crew \u2014 I can search talks by meaning, recall what you said in this chat, and draft a shared itinerary. Try: plan our afternoon \u2014 try to stick together\n\u2022 You: what did we say about dinner?\n\n**Proposed itinerary:**\n\u2022 2026-11-09T17:30:00 \u00b7 Hall B \u00b7 **Internal Developer Platforms on Kubernetes** (fits: Alex, Jordan; overlap=3.2) \u2014 Crew overlap score 3.2; track=platform; room load=7\n\u2022 2026-11-09T15:30:00 \u00b7 Ballroom \u00b7 **CI Pipelines That Review Themselves** (fits: Alex, Sam, Jordan; overlap=3.15) \u2014 Crew overlap score 3.2; track=platform; room load=6\n\u2022 2026-11-09T14:00:00 \u00b7 Room 202 \u00b7 **Responsible RAG in Production** (fits: Sam; overlap=2.1) \u2014 Crew overlap score 2.1; track=ai; room load=6\n\n_Skipped 11 conflicting slot(s) while packing._",
+      "events": [
+        "status",
+        "status",
+        "explanation",
+        "talks",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "token",
+        "done"
+      ]
+    }
+  ]
+}
