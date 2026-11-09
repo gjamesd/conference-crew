@@ -12,12 +12,55 @@ from app.config import get_settings
 from app.planner import (
     build_crew_plan,
     detect_chat_recall_intent,
+    detect_chat_summary_intent,
     detect_compare_intent,
+    detect_linear_link_intent,
     detect_plan_intent,
+    detect_sprint_plan_intent,
+    format_sessions_section,
+    sessions_for_meeting,
 )
-from app.rag import MAX_MESSAGES, MAX_TALKS, ask, synthesize_answer_stream
+from app.linear_sync import push_sprint_sync_to_linear
+from app.rag import (
+    MAX_MESSAGES,
+    MAX_TALKS,
+    ask,
+    ask_chat_thread,
+    build_sprint_artifact,
+    collect_chat_context,
+    synthesize_answer_stream,
+)
 from app.search import list_messages, search_messages, search_talks
 from app.telemetry import log_query
+
+
+def _maybe_push_linear(
+    *,
+    intent: str,
+    question: str,
+    markdown: str,
+    artifact: dict[str, Any] | None = None,
+) -> dict[str, Any] | None:
+    if intent not in {"chat_summary", "sprint_plan", "linear_link"}:
+        return None
+    return push_sprint_sync_to_linear(
+        intent=intent,
+        question=question,
+        markdown=markdown,
+        artifact=artifact,
+    )
+
+
+def _resolve_chat_intent(body: str) -> str | None:
+    if detect_linear_link_intent(body):
+        return "linear_link"
+    if detect_sprint_plan_intent(body):
+        return "sprint_plan"
+    if detect_chat_summary_intent(body):
+        return "chat_summary"
+    if detect_chat_recall_intent(body):
+        return "recall"
+    return None
 
 
 def index_message(
@@ -118,12 +161,21 @@ def post_user_message(
         if plan.get("reconvene_room"):
             lines.append(f"\nReconvene at **{plan['reconvene_room']}** after split sessions.")
         bot_text = "\n".join(lines)
-    elif detect_chat_recall_intent(body):
-        result = ask(es, body, group_id=group_id, mode="hybrid")
+    elif _resolve_chat_intent(body):
+        intent = _resolve_chat_intent(body) or "chat_summary"
+        result = ask_chat_thread(es, body, group_id=group_id, intent=intent)
         meta["ask"] = result
         meta["explanation"] = result.get("explanation")
         meta["query_id"] = result.get("query_id")
+        if intent == "sprint_plan":
+            meta["artifact"] = result.get("artifact")
         bot_text = result["answer"]
+        meta["linear"] = _maybe_push_linear(
+            intent=intent,
+            question=body,
+            markdown=bot_text,
+            artifact=result.get("artifact") if intent == "sprint_plan" else None,
+        )
     else:
         result = ask(es, body, group_id=group_id, mode="hybrid")
         meta["ask"] = result
@@ -192,6 +244,92 @@ def stream_user_message(
         bot_text = _format_compare(compare)
         yield _sse("token", {"text": bot_text})
 
+    elif _resolve_chat_intent(body):
+        intent = _resolve_chat_intent(body) or "chat_summary"
+        if intent == "sprint_plan":
+            yield _sse("status", {"phase": "planning"})
+        elif intent == "linear_link":
+            yield _sse("status", {"phase": "searching"})
+        else:
+            yield _sse("status", {"phase": "searching"})
+        messages = collect_chat_context(es, body, group_id=group_id)
+        sessions: list[dict[str, Any]] = []
+        if intent in {"chat_summary", "sprint_plan"}:
+            sessions = sessions_for_meeting(es, messages)
+        talks = sessions
+        explanation = {
+            "query": body,
+            "mode": "chat",
+            "methods": "message hybrid + recent thread"
+            + (" + talk hybrid per person" if sessions else " (no talks)")
+            + (" + Linear catalog" if intent == "linear_link" else ""),
+            "narrative": (
+                f"Chat-grounded {intent}: {len(messages)} message(s), {len(sessions)} session(s)."
+            ),
+            "top_talks": sessions,
+            "chat_hits": [
+                {"sender": m.get("sender"), "body": (m.get("body") or "")[:120], "score": m.get("score")}
+                for m in messages[:8]
+            ],
+        }
+        query_id = log_query(
+            es,
+            query=body,
+            group_id=group_id,
+            mode="chat",
+            kind=intent,
+            result_ids=[m.get("message_id") for m in messages if m.get("message_id")],
+            explanation=explanation,
+        )
+        meta["explanation"] = explanation
+        meta["query_id"] = query_id
+        meta["ask"] = {
+            "talks": talks,
+            "messages": messages,
+            "mode": "chat",
+            "query_id": query_id,
+            "intent": intent,
+        }
+        yield _sse("explanation", explanation)
+        yield _sse("talks", {"talks": sessions})
+        pieces: list[str] = []
+        for evt in synthesize_answer_stream(
+            body, [], messages, es=es, intent=intent, mode="chat"
+        ):
+            if evt.get("event") == "status":
+                yield _sse("status", evt.get("data") or {})
+            elif evt.get("event") == "token":
+                text = (evt.get("data") or {}).get("text") or ""
+                pieces.append(text)
+                yield _sse("token", {"text": text})
+        bot_text = "".join(pieces)
+        if sessions:
+            section = format_sessions_section(sessions)
+            bot_text = f"{bot_text.rstrip()}{section}"
+            yield _sse("token", {"text": section})
+        meta["ask"]["answer"] = bot_text
+        artifact = None
+        if intent == "sprint_plan":
+            artifact = build_sprint_artifact(body, messages, markdown=bot_text)
+            if artifact is not None:
+                artifact["sessions"] = sessions
+                markdown = artifact.get("document_markdown") or bot_text
+                if sessions and "Sessions that match this meeting" not in markdown:
+                    markdown = f"{markdown.rstrip()}{format_sessions_section(sessions)}"
+                artifact["document_markdown"] = markdown
+            meta["artifact"] = artifact
+            yield _sse("artifact", {"artifact": artifact})
+        if intent in {"chat_summary", "sprint_plan", "linear_link"}:
+            yield _sse("status", {"phase": "linear_push"})
+            linear_meta = _maybe_push_linear(
+                intent=intent,
+                question=body,
+                markdown=bot_text,
+                artifact=artifact,
+            )
+            meta["linear"] = linear_meta
+            yield _sse("linear", {"linear": linear_meta})
+
     elif detect_plan_intent(body):
         yield _sse("status", {"phase": "planning"})
         plan = build_crew_plan(es, body, group_id=group_id)
@@ -214,14 +352,13 @@ def stream_user_message(
         if plan.get("reconvene_room"):
             lines.append(f"\nReconvene at **{plan['reconvene_room']}** after split sessions.")
         bot_text = "\n".join(lines)
-        # Plan summary already LLM'd (cached); stream in chunks for UX
         step = 56
         for i in range(0, len(bot_text), step):
             yield _sse("token", {"text": bot_text[i : i + step]})
 
     else:
         yield _sse("status", {"phase": "searching"})
-        intent = "recall" if detect_chat_recall_intent(body) else "ask"
+        intent = "ask"
         talks = search_talks(es, body, mode="hybrid", size=MAX_TALKS)
         messages = search_messages(es, body, group_id=group_id, mode="hybrid", size=MAX_MESSAGES)
         explanation = explain_results(
@@ -242,7 +379,7 @@ def stream_user_message(
         yield _sse("explanation", explanation)
         yield _sse("talks", {"talks": talks})
 
-        pieces: list[str] = []
+        pieces = []
         for evt in synthesize_answer_stream(
             body, talks, messages, es=es, intent=intent, mode="hybrid"
         ):

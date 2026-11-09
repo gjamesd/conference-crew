@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Literal, Optional
@@ -10,9 +11,10 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel, Field
 
-from app.chat import post_user_message, stream_user_message
+from app.chat import index_message, post_user_message, stream_user_message
 from app.compare import compare_talk_search
 from app.config import get_settings
+from app.demo_script import CREW_SENDERS, advance_demo_beat, load_demo_script
 from app.es_client import ElasticsearchNotConfigured, ensure_indices, get_es
 from app.imessage_import import import_rows, parse_export_csv, parse_export_json, read_messages_db
 from app.planner import build_crew_plan
@@ -65,6 +67,12 @@ class ChatPostRequest(BaseModel):
     sender: str = "You"
     body: str
     group_id: Optional[str] = None
+    # When false (or sender is Alex/Sam/Jordan), message is stored without CrewBot.
+    invoke_bot: Optional[bool] = None
+
+
+class DemoAdvanceRequest(BaseModel):
+    beat_index: int = Field(default=0, ge=0, le=20)
 
 
 class PlanRequest(BaseModel):
@@ -129,6 +137,8 @@ def health() -> dict[str, Any]:
         "ok": True,
         "elasticsearch_configured": bool(settings.elasticsearch_url and settings.elasticsearch_api_key),
         "openai_configured": bool(settings.openai_api_key),
+        "linear_configured": bool(settings.linear_api_key),
+        "linear_team_key": settings.linear_team_key or None,
     }
     if status["elasticsearch_configured"]:
         try:
@@ -242,12 +252,54 @@ def api_list_messages(group_id: str, size: int = Query(default=100, ge=1, le=500
     return {"group_id": group_id, "messages": list_messages(es, group_id, size=size)}
 
 
+def _should_invoke_bot(body: ChatPostRequest) -> bool:
+    if body.invoke_bot is False:
+        return False
+    if body.invoke_bot is True:
+        return True
+    # Default: crew chatter is silent; only "You" (and unknown) wake CrewBot.
+    return body.sender.strip() not in CREW_SENDERS
+
+
+@app.get("/api/demo/script")
+def api_demo_script() -> dict[str, Any]:
+    script = load_demo_script()
+    beats = []
+    for i, beat in enumerate(script.get("beats") or []):
+        beats.append(
+            {
+                "index": i,
+                "id": beat.get("id"),
+                "title": beat.get("title"),
+                "cue": beat.get("cue"),
+                "suggest": beat.get("suggest"),
+                "message_count": len(beat.get("messages") or []),
+            }
+        )
+    return {"name": script.get("name"), "total_beats": len(beats), "beats": beats}
+
+
+@app.post("/api/groups/{group_id}/demo/advance")
+def api_demo_advance(group_id: str, body: DemoAdvanceRequest) -> dict[str, Any]:
+    es = _es_or_503()
+    return advance_demo_beat(es, group_id=group_id, beat_index=body.beat_index)
+
+
 @app.post("/api/groups/{group_id}/messages")
 def api_post_message(group_id: str, body: ChatPostRequest) -> dict[str, Any]:
     es = _es_or_503()
     if not body.body.strip():
         raise HTTPException(status_code=400, detail="body is required")
-    return post_user_message(es, group_id=group_id, sender=body.sender, body=body.body.strip())
+    text = body.body.strip()
+    if not _should_invoke_bot(body):
+        doc = index_message(es, group_id=group_id, sender=body.sender, body=text, role="user")
+        return {
+            "user_message": doc,
+            "bot_message": None,
+            "meta": {"invoke_bot": False},
+            "thread": list_messages(es, group_id),
+        }
+    return post_user_message(es, group_id=group_id, sender=body.sender, body=text)
 
 
 @app.post("/api/groups/{group_id}/messages/stream")
@@ -255,13 +307,39 @@ def api_post_message_stream(group_id: str, body: ChatPostRequest) -> StreamingRe
     es = _es_or_503()
     if not body.body.strip():
         raise HTTPException(status_code=400, detail="body is required")
+    text = body.body.strip()
+
+    if not _should_invoke_bot(body):
+        def chat_only():
+            doc = index_message(es, group_id=group_id, sender=body.sender, body=text, role="user")
+            payload_status = json.dumps({"phase": "crew_chat", "user_message": doc}, default=str)
+            payload_done = json.dumps(
+                {
+                    "bot_message": None,
+                    "meta": {"invoke_bot": False},
+                    "thread": list_messages(es, group_id),
+                },
+                default=str,
+            )
+            yield f"event: status\ndata: {payload_status}\n\n"
+            yield f"event: done\ndata: {payload_done}\n\n"
+
+        return StreamingResponse(
+            chat_only(),
+            media_type="text/event-stream",
+            headers={
+                "Cache-Control": "no-cache",
+                "Connection": "keep-alive",
+                "X-Accel-Buffering": "no",
+            },
+        )
 
     def event_source():
         yield from stream_user_message(
             es,
             group_id=group_id,
             sender=body.sender,
-            body=body.body.strip(),
+            body=text,
         )
 
     return StreamingResponse(

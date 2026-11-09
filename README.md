@@ -99,6 +99,20 @@ Ingest creates mappings with `semantic_text` (Jina via Elastic Inference Service
 
 ```bash
 uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+
+### Docker
+
+```bash
+# requires a filled .env (Elasticsearch + optional OpenAI/Linear keys)
+docker compose up --build
+# app: http://localhost:8000
+```
+
+One-off ingest against Elastic Cloud (same `.env`):
+
+```bash
+docker compose run --rm conference-crew python scripts/ingest.py
+```
 ```
 
 - Chat UI: http://localhost:8000  
@@ -155,6 +169,10 @@ mcp_server/    MCP tool server
 templates/     Chat + dashboard UI
 static/        CSS/JS
 ```
+
+## Gitar / Sonar
+
+Review conventions live in [`.gitar/review/`](.gitar/review/). Install the [Gitar GitHub App](https://app.gitar.ai) on this repository and land features through pull requests so Gitar reviews each change.
 
 ## AI disclosure
 

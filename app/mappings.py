@@ -1,4 +1,6 @@
-"""Index mappings. semantic_text uses Elastic Inference Service (Jina on Cloud)."""
+"""Index mappings. semantic_text pinned to Jina on Elastic Cloud."""
+
+JINA_INFERENCE_ID = ".jina-embeddings-v3"
 
 TALKS_MAPPING = {
     "mappings": {
@@ -8,7 +10,10 @@ TALKS_MAPPING = {
                 "type": "text",
                 "fields": {"keyword": {"type": "keyword", "ignore_above": 256}},
             },
-            "abstract": {"type": "semantic_text"},
+            "abstract": {
+                "type": "semantic_text",
+                "inference_id": JINA_INFERENCE_ID,
+            },
             "abstract_text": {"type": "text"},
             "track": {"type": "keyword"},
             "speakers": {"type": "keyword"},
@@ -29,7 +34,10 @@ MESSAGES_MAPPING = {
             "message_id": {"type": "keyword"},
             "group_id": {"type": "keyword"},
             "sender": {"type": "keyword"},
-            "body": {"type": "semantic_text"},
+            "body": {
+                "type": "semantic_text",
+                "inference_id": JINA_INFERENCE_ID,
+            },
             "body_text": {"type": "text"},
             "role": {"type": "keyword"},
             "timestamp": {"type": "date"},

@@ -30,7 +30,18 @@
         </div>
         <div>
           <h1>Crew Demo</h1>
-          <p class="subtle">Alex · Sam · Jordan · CrewBot · group <code id="groupId">{{ group_id }}</code></p>
+          <p class="subtle">Status updates · Linear + GitHub · sprint sync · group <code id="groupId">{{ group_id }}</code></p>
+        </div>
+      </div>
+
+      <div id="demoCue" class="demo-cue" hidden>
+        <p id="demoCueText">Starting meeting transcript…</p>
+        <div class="demo-actions">
+          <button type="button" id="continueCrew" hidden>Continue the conversation</button>
+          <button type="button" id="downloadJson" class="ghost" hidden>Download sprint JSON</button>
+          <button type="button" id="downloadMd" class="ghost" hidden>Download sprint doc</button>
+          <a id="openLinear" class="ghost linear-link" hidden target="_blank" rel="noreferrer">Open in Linear</a>
+          <button type="button" id="restartDemo" class="ghost">Restart meeting</button>
         </div>
       </div>
 
@@ -39,27 +50,28 @@
       <form id="composer" class="composer">
         <label class="sr-only" for="sender">Sender</label>
         <select id="sender" name="sender">
+          <option selected>You</option>
           <option>Alex</option>
           <option>Sam</option>
           <option>Jordan</option>
-          <option selected>You</option>
         </select>
         <label class="sr-only" for="body">Message</label>
-        <input id="body" name="body" autocomplete="off" placeholder="Try: plan our afternoon — try to stick together" required />
-        <button type="submit">Send</button>
+        <input id="body" name="body" autocomplete="off" placeholder="summarize this meeting — what's most important?" required />
+        <button type="submit">Ask CrewBot</button>
       </form>
       <div class="hints">
-        <button type="button" data-fill="plan our afternoon — try to stick together">Plan afternoon</button>
-        <button type="button" data-fill="what did we say about dinner?">Recall dinner</button>
-        <button type="button" data-fill="something on eBPF and security after lunch">eBPF search</button>
-        <button type="button" data-fill="compare: something on eBPF and security">Compare modes</button>
-        <button type="button" data-fill="plan our afternoon — split up">Split plan</button>
+        <button type="button" id="suggestHint" data-fill="summarize this meeting — what's most important?">Suggested ask</button>
+        <button type="button" data-fill="summarize this meeting — what's most important?">Summarize meeting</button>
+        <button type="button" data-fill="connect these problems to their Linear issues for sprint planning">Connect to Linear</button>
+        <button type="button" data-fill="which talks fit what we just said?">Talks that fit</button>
+        <button type="button" data-fill="create a sprint planning document and JSON from this meeting">Sprint JSON + doc</button>
+        <button type="button" data-fill="update the sprint plan JSON with the dogfood schedule">Refresh plan</button>
       </div>
     </section>
 
     <aside class="side">
-      <h2>Why Elasticsearch</h2>
-      <p>Talks, chat, itineraries, and query logs live in ES. Jina <code>semantic_text</code> + hybrid RRF + time/geo + conflict-aware planning.</p>
+      <h2>How to demo</h2>
+      <p>Casual “where I’m at” updates cite Linear <code>JAM-5…JAM-10</code> and real GitHub issues. Summarize / sprint-plan pushes to <code>JAM-11</code>. Continue, then ask again.</p>
       <div id="status" class="status">Checking connection…</div>
       <h2>Explainability</h2>
       <div id="explain" class="explain">Send a message to see mode, scores, and filters.</div>
