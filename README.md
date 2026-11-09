@@ -150,6 +150,10 @@ templates/     Chat + dashboard UI
 static/        CSS/JS
 ```
 
+## Gitar / Sonar
+
+Review conventions live in [`.gitar/review/`](.gitar/review/). Install the [Gitar GitHub App](https://app.gitar.ai) on this repository and land features through pull requests so Gitar reviews each change.
+
 ## AI disclosure
 
 This project was built with Cursor (AI coding assistant). The participant directed product decisions, verified Elasticsearch behavior, and can explain the architecture (indices, hybrid retrieval, planner, RAG grounding).

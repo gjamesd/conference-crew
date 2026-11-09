@@ -1,5 +1,11 @@
 # Demo script (5 minutes)
 
+## Gitar (Sonar) — required for sponsor tooling
+
+1. Install the Gitar GitHub App on this repo: https://app.gitar.ai  
+2. Confirm reviews run on PRs (project rules live in `.gitar/review/`).  
+3. Ship features through PRs so Gitar is part of how you build, not a last-minute checkbox.
+
 ## Setup before judges walk up
 
 1. Elastic Serverless project running; `.env` filled
