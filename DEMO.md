@@ -1,11 +1,28 @@
 # Demo script (5 minutes)
 
+## Gitar (Sonar) — required for sponsor tooling
+
+1. Install the Gitar GitHub App on this repo: https://app.gitar.ai  
+2. Confirm reviews run on PRs (project rules live in `.gitar/review/`).  
+3. Ship features through PRs so Gitar is part of how you build, not a last-minute checkbox.
+
 ## Setup before judges walk up
 
-1. Elastic Serverless project running; `.env` filled
-2. `python scripts/ingest.py` completed
+1. Elastic Serverless project running; `.env` filled (`OPENAI_API_KEY` + `gpt-4o-mini`)
+2. `python scripts/ingest.py` completed (includes `llm_cache` index)
 3. `uvicorn app.main:app --host 0.0.0.0 --port 8000`
-4. Browser on http://localhost:8000 and http://localhost:8000/dashboard
+4. Browser on http://localhost:8000 — **paced demo**: Alex/Sam/Jordan talk → you ask CrewBot → Continue crew chat
+5. Ask the same question twice to show **cache hit** (no second spend)
+
+## Paced meeting flow (Glasses AI standup → Linear sprint sync)
+
+1. One-time: set `LINEAR_API_KEY` in `.env`, run `python scripts/setup_linear.py` (creates `JAM-5…JAM-11`)
+2. Status chat cites Linear issues + real GitHub issues (`#3`–`#8`)
+3. **Continue the conversation** for longer detail (or ask anytime)
+4. Ask: `summarize this meeting — what's most important?` → pushes to **JAM-11** + comments workstreams
+5. Ask: `create a sprint planning document and JSON from this meeting` → download + **Open in Linear**
+6. Continue again → ask CrewBot to refresh the plan (pushes again)
+7. **Restart meeting** starts a fresh live group id
 
 ## Talk track
 

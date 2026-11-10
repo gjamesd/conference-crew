@@ -1,0 +1,69 @@
+{
+  "team_id": "74756081-7ccf-410c-9812-b0b9741e3e05",
+  "team_key": "JAM",
+  "issues": [
+    {
+      "owner": "Alex",
+      "role": "workstream",
+      "title": "[Alex] MenuOCR confidence gate + TTS summary",
+      "github_url": "https://github.com/gjamesd/conference-crew/issues/3",
+      "id": "e4fddceb-0c74-49d0-8078-22a064541f33",
+      "identifier": "JAM-5",
+      "url": "https://linear.app/jamesgg/issue/JAM-5/alex-menuocr-confidence-gate-tts-summary"
+    },
+    {
+      "owner": "Alex",
+      "role": "workstream",
+      "title": "[Alex] Serif font pack + thermal yield signal",
+      "github_url": "https://github.com/gjamesd/conference-crew/issues/4",
+      "id": "e001cfcc-364b-424f-b958-4371cb6fead5",
+      "identifier": "JAM-6",
+      "url": "https://linear.app/jamesgg/issue/JAM-6/alex-serif-font-pack-thermal-yield-signal"
+    },
+    {
+      "owner": "Sam",
+      "role": "workstream",
+      "title": "[Sam] Wake-word tighten + on-device ASR intents",
+      "github_url": "https://github.com/gjamesd/conference-crew/issues/5",
+      "id": "da1131f1-2c44-425f-bf98-1c7168672a3d",
+      "identifier": "JAM-7",
+      "url": "https://linear.app/jamesgg/issue/JAM-7/sam-wake-word-tighten-on-device-asr-intents"
+    },
+    {
+      "owner": "Sam",
+      "role": "workstream",
+      "title": "[Sam] Tap-to-share privacy stub (no continuous cloud)",
+      "github_url": "https://github.com/gjamesd/conference-crew/issues/6",
+      "id": "6bef09d8-4127-4a20-b615-a038770299d5",
+      "identifier": "JAM-8",
+      "url": "https://linear.app/jamesgg/issue/JAM-8/sam-tap-to-share-privacy-stub-no-continuous-cloud"
+    },
+    {
+      "owner": "Jordan",
+      "role": "workstream",
+      "title": "[Jordan] Dining/transit categorizer v0 + eval harness",
+      "github_url": "https://github.com/gjamesd/conference-crew/issues/7",
+      "id": "cc0a66bd-13ca-492c-9de8-ba563518fdf1",
+      "identifier": "JAM-9",
+      "url": "https://linear.app/jamesgg/issue/JAM-9/jordan-diningtransit-categorizer-v0-eval-harness"
+    },
+    {
+      "owner": "Jordan",
+      "role": "workstream",
+      "title": "[Jordan] Feature-bus fusion (ocr_tokens + asr_intent)",
+      "github_url": "https://github.com/gjamesd/conference-crew/issues/8",
+      "id": "76beb87d-ce4b-449b-8774-945766a8b4d1",
+      "identifier": "JAM-10",
+      "url": "https://linear.app/jamesgg/issue/JAM-10/jordan-feature-bus-fusion-ocr-tokens-asr-intent"
+    },
+    {
+      "owner": "CrewBot",
+      "role": "sprint_sync",
+      "title": "CrewBot Sprint Sync",
+      "github_url": null,
+      "id": "c267ab75-0f08-4532-be4e-6c726d497a52",
+      "identifier": "JAM-11",
+      "url": "https://linear.app/jamesgg/issue/JAM-11/crewbot-sprint-sync"
+    }
+  ]
+}

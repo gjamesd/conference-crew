@@ -108,6 +108,59 @@ nav a:hover { border-color: var(--accent); }
 .avatars span:nth-child(4) { background: #0f6a4d; }
 .avatars span:first-child { margin-left: 0; }
 
+.demo-cue {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem 1rem;
+  padding: 0.75rem 1.1rem;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(90deg, rgba(15, 106, 77, 0.1), rgba(196, 92, 38, 0.08));
+  animation: rise 0.45s ease both;
+}
+.demo-cue p {
+  margin: 0;
+  flex: 1 1 16rem;
+  color: var(--ink);
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+.demo-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.demo-actions button {
+  font: inherit;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  padding: 0.55rem 0.9rem;
+  cursor: pointer;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+}
+.demo-actions button.ghost,
+.demo-actions a.ghost {
+  background: rgba(255, 255, 255, 0.75);
+  color: var(--ink);
+  border-color: var(--line);
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+.demo-actions a.linear-link {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.55rem 0.9rem;
+}
+.demo-actions button:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+
 .messages {
   flex: 1;
   overflow-y: auto;
@@ -269,6 +322,38 @@ nav a:hover { border-color: var(--accent); }
   padding: 0.35rem 0.7rem;
   cursor: pointer;
 }
+
+.bubble.streaming {
+  outline: 1px dashed rgba(15, 106, 77, 0.35);
+}
+.bubble.streaming .bubble-body::after {
+  content: "▍
+  animation: blink 1s steps(1, end) infinite;
+  margin-left: 2px;
+}
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.talk-cards {
+  align-self: flex-start;
+  display: grid;
+  gap: 0.4rem;
+  max-width: min(78%, 34rem);
+  margin: -0.25rem 0 0.35rem;
+  animation: rise 0.35s ease both;
+}
+.talk-card {
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.55rem 0.7rem;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.72);
+  font-size: 0.82rem;
+}
+.talk-card strong { font-size: 0.88rem; }
+.talk-card span { color: var(--muted); }
 .dash-grid article {
   border-radius: 20px;
   padding: 1rem 1.1rem;

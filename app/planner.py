@@ -22,7 +22,95 @@ INTEREST_HINTS = {
 }
 
 
+def detect_linear_link_intent(text: str) -> bool:
+    t = text.lower()
+    triggers = [
+        "linear issue",
+        "linear issues",
+        "their linear",
+        "associated linear",
+        "connect these to linear",
+        "connect these to a linear",
+        "connect to linear",
+        "link each",
+        "link these",
+        "link them",
+        "link the problems",
+        "map to linear",
+        "map these to linear",
+        "with their linear",
+        "to their linear",
+        "jam-",
+        "open in linear",
+    ]
+    if any(x in t for x in triggers):
+        return True
+    # "connect/link/associate … linear" without requiring exact phrase order beyond both tokens
+    link_verbs = ("connect", "link", "associate", "map")
+    return "linear" in t and any(v in t for v in link_verbs)
+
+
+def detect_sprint_plan_intent(text: str) -> bool:
+    t = text.lower()
+    triggers = [
+        "sprint plan",
+        "sprint planning",
+        "for sprint planning",
+        "planning session",
+        "backlog with owners",
+        "turn this into a sprint",
+        "make a sprint",
+        "draft a sprint",
+        "present in planning",
+        "sprint backlog",
+        "sprint planning json",
+        "planning json",
+        "create a sprint",
+        "generate a sprint",
+        "sprint planning document",
+        "planning document",
+        "planning packet",
+        "update the sprint",
+    ]
+    return any(x in t for x in triggers)
+
+
+def detect_chat_summary_intent(text: str) -> bool:
+    if detect_sprint_plan_intent(text) or detect_linear_link_intent(text):
+        return False
+    t = text.lower()
+    triggers = [
+        "summarize this",
+        "summarise this",
+        "summarize this meeting",
+        "summary of what",
+        "what this is about",
+        "what's this about",
+        "whats this about",
+        "most important",
+        "what's most important",
+        "whats most important",
+        "priorities from this",
+        "what is this conversation",
+        "what is this about",
+        "recap this thread",
+        "recap the thread",
+        "recap this meeting",
+        "tl;dr",
+        "tldr",
+        "summarize the problems",
+        "problems that this group",
+        "prepare for a two week",
+        "two week sprint",
+        "which talks fit",
+    ]
+    return any(x in t for x in triggers)
+
+
 def detect_plan_intent(text: str) -> bool:
+    """Conference itinerary planner — not product sprint planning."""
+    if detect_sprint_plan_intent(text):
+        return False
     t = text.lower()
     triggers = [
         "plan our",
@@ -39,6 +127,12 @@ def detect_plan_intent(text: str) -> bool:
 
 
 def detect_chat_recall_intent(text: str) -> bool:
+    if (
+        detect_chat_summary_intent(text)
+        or detect_sprint_plan_intent(text)
+        or detect_linear_link_intent(text)
+    ):
+        return False
     t = text.lower()
     triggers = [
         "what did we",
@@ -114,6 +208,73 @@ def _pick_non_overlapping(
         if len(picked) >= limit:
             break
     return picked, skipped
+
+
+def sessions_for_meeting(
+    es: Elasticsearch,
+    messages: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    """Hybrid-search talks from each person's own lines. Skip the bot."""
+    by_person: dict[str, list[str]] = {}
+    for msg in messages:
+        sender = (msg.get("sender") or "").strip()
+        if not sender or sender == "CrewBot" or (msg.get("role") or "") == "assistant":
+            continue
+        body = (msg.get("body") or "").strip()
+        if not body:
+            continue
+        by_person.setdefault(sender, []).append(body)
+
+    merged: dict[str, dict[str, Any]] = {}
+    for person, parts in by_person.items():
+        query = " ".join(parts)[:500].strip()
+        if not query:
+            continue
+        hits = search_talks(es, query, mode="hybrid", size=2)
+        for hit in hits:
+            talk_id = hit.get("talk_id")
+            if not talk_id:
+                continue
+            existing = merged.get(talk_id)
+            if existing is None:
+                merged[talk_id] = {**hit, "fits": [person]}
+                continue
+            if person not in existing["fits"]:
+                existing["fits"].append(person)
+            if (hit.get("score") or 0) > (existing.get("score") or 0):
+                fits = existing["fits"]
+                merged[talk_id] = {**hit, "fits": fits}
+
+    ranked = sorted(merged.values(), key=lambda talk: -(talk.get("score") or 0))
+    picked, _skipped = _pick_non_overlapping(ranked, limit=4)
+    sessions: list[dict[str, Any]] = []
+    for talk in picked:
+        sessions.append(
+            {
+                "talk_id": talk.get("talk_id"),
+                "title": talk.get("title"),
+                "room": talk.get("room"),
+                "start": talk.get("start"),
+                "end": talk.get("end"),
+                "track": talk.get("track"),
+                "fits": list(talk.get("fits") or []),
+                "score": talk.get("score"),
+            }
+        )
+    return sessions
+
+
+def format_sessions_section(sessions: list[dict[str, Any]]) -> str:
+    if not sessions:
+        return ""
+    lines = ["", "Sessions that match this meeting"]
+    for session in sessions:
+        fits = ", ".join(session.get("fits") or [])
+        who = f" — fits {fits}" if fits else ""
+        lines.append(
+            f"• {session.get('title')} ({session.get('room')}, {session.get('start')}){who}"
+        )
+    return "\n".join(lines)
 
 
 def _room_density(es: Elasticsearch) -> dict[str, int]:
@@ -275,6 +436,9 @@ def build_crew_plan(
         f"Conflicts skipped while packing schedule: {conflicts_resolved}.",
         itinerary,
         chat_hits,
+        es=es,
+        intent="plan",
+        mode="hybrid",
     )
 
     itinerary_id = f"itin-{uuid.uuid4().hex[:10]}"

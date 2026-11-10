@@ -9,6 +9,18 @@ from app.config import get_settings
 
 SearchMode = Literal["keyword", "semantic", "hybrid"]
 
+# ~250m between neighbors so an 80m geo filter can exclude other halls.
+ROOM_COORDS = {
+    "Hall A": (40.7616, -111.8915),
+    "Hall B": (40.7616, -111.8886),
+    "Hall C": (40.75935, -111.8915),
+    "Room 101": (40.76385, -111.8915),
+    "Room 202": (40.7616, -111.8944),
+    "Ballroom": (40.75935, -111.8886),
+}
+
+DEFAULT_GEO_DISTANCE = "80m"
+
 
 def _hit_to_talk(hit: dict[str, Any]) -> dict[str, Any]:
     src = hit.get("_source", {})
@@ -87,7 +99,7 @@ def search_talks(
     start_before: datetime | None = None,
     near_lat: float | None = None,
     near_lon: float | None = None,
-    distance: str = "300m",
+    distance: str = DEFAULT_GEO_DISTANCE,
     room: str | None = None,
     track: str | None = None,
 ) -> list[dict[str, Any]]:
@@ -119,7 +131,7 @@ def search_talks(
 
     semantic_query: dict[str, Any] = {
         "bool": {
-            "must": [{"match": {"abstract": {"query": query}}}],
+            "must": [{"semantic": {"field": "abstract", "query": query}}],
             "filter": filters,
         }
     }
@@ -129,7 +141,6 @@ def search_talks(
     elif mode == "semantic":
         resp = es.search(index=settings.talks_index, size=size, query=semantic_query)
     else:
-        # Hybrid via RRF retriever (keyword + semantic)
         resp = es.search(
             index=settings.talks_index,
             size=size,
@@ -167,7 +178,7 @@ def search_messages(
     }
     semantic_query = {
         "bool": {
-            "must": [{"match": {"body": {"query": query}}}],
+            "must": [{"semantic": {"field": "body", "query": query}}],
             "filter": group_filter,
         }
     }
@@ -209,16 +220,6 @@ def list_messages(
         sort=[{"timestamp": {"order": "asc"}}],
     )
     return [_hit_to_message(h) for h in resp["hits"]["hits"]]
-
-
-ROOM_COORDS = {
-    "Hall A": (40.7616, -111.8915),
-    "Hall B": (40.7611, -111.8904),
-    "Hall C": (40.7604, -111.8908),
-    "Room 101": (40.7618, -111.8909),
-    "Room 202": (40.7606, -111.8917),
-    "Ballroom": (40.7609, -111.8911),
-}
 
 
 def resolve_near_room(room: str | None) -> tuple[float | None, float | None]:

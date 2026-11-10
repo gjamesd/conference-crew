@@ -42,11 +42,17 @@ Most talk finders are a solo search box. **Conference Crew** is an iMessage-styl
 | Agent Builder / MCP | `mcp_server/server.py` tools |
 | Elastic Agent Skills | Use while building: [elastic/agent-skills](https://github.com/elastic/agent-skills) |
 
-## OpenAI $50 credits (hackathon)
+## OpenAI credits (hackathon) — use them efficiently
 
-There is **no self-serve redeem link** on the CNH site. Credits are part of in-person swag (“everyone who attends”). Ask organizers / check-in / Discord for the coupon or invite code, then add it in [OpenAI billing](https://platform.openai.com/settings/organization/billing) and put the resulting `OPENAI_API_KEY` in `.env`.
+Organizers email each team a **one-time** claim link (1 code per team). Claim it in the [OpenAI platform](https://platform.openai.com), create an API key, and set `OPENAI_API_KEY` in `.env` (never commit). Keep `OPENAI_MODEL=gpt-4o-mini`.
 
-Until then the app still works: RAG falls back to template answers from Elasticsearch hits. Use `scripts/simulate_and_save.py` so conversations are saved and replayed without re-burning tokens.
+**Spend rules in this app:**
+- Elasticsearch does all retrieval (keyword / Jina semantic / hybrid).
+- OpenAI only narrates answers for ask/plan (compare mode never calls the LLM).
+- Responses are cached in the `llm_cache` ES index — repeat demo questions are free after the first hit.
+- Chat UI uses SSE streaming so the bot feels real-time without needing a bigger model.
+
+Without a key, the app still works via template answers over ES hits. Use `scripts/simulate_and_save.py` to save/replay demos.
 
 ## Quick start
 
@@ -93,6 +99,20 @@ Ingest creates mappings with `semantic_text` (Jina via Elastic Inference Service
 
 ```bash
 uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+
+### Docker
+
+```bash
+# requires a filled .env (Elasticsearch + optional OpenAI/Linear keys)
+docker compose up --build
+# app: http://localhost:8000
+```
+
+One-off ingest against Elastic Cloud (same `.env`):
+
+```bash
+docker compose run --rm conference-crew python scripts/ingest.py
+```
 ```
 
 - Chat UI: http://localhost:8000  
@@ -149,6 +169,10 @@ mcp_server/    MCP tool server
 templates/     Chat + dashboard UI
 static/        CSS/JS
 ```
+
+## Gitar / Sonar
+
+Review conventions live in [`.gitar/review/`](.gitar/review/). Install the [Gitar GitHub App](https://app.gitar.ai) on this repository and land features through pull requests so Gitar reviews each change.
 
 ## AI disclosure
 

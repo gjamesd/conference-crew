@@ -1,0 +1,177 @@
+{
+  "name": "glasses_status_updates_linear",
+  "beats": [
+    {
+      "id": "status_round",
+      "title": "Where everyone is",
+      "cue": "Casual status updates with real Linear + GitHub issue links. Continue, or ask CrewBot to summarize (pushes to Linear).",
+      "suggest": "summarize this meeting — what's most important?",
+      "messages": [
+        {
+          "sender": "Alex",
+          "body": "Quick update on where I am — JAM-5 is the main grind (MenuOCR confidence gate + TTS). Tracking it here too: https://github.com/gjamesd/conference-crew/issues/3 — Latin menus ~92%, stylized/low-light still ~71%, first-glyph p95 ~340ms vs 250ms bar."
+        },
+        {
+          "sender": "Sam",
+          "body": "Update on my side — JAM-7 wake-word + intents: https://github.com/gjamesd/conference-crew/issues/5 — WWv3 helped (~35% fewer false accepts) but open-office false wakes still ~2.1/hr. read_menu / whats_around / stop are working on-device."
+        },
+        {
+          "sender": "Jordan",
+          "body": "Where I’m at — JAM-9 categorizer: https://github.com/gjamesd/conference-crew/issues/7 — 0.81 F1 on phone proxies, but we only have ~40 labeled glasses dining clips. When OCR/ASR are empty I just emit unknown and it looks broken."
+        },
+        {
+          "sender": "Alex",
+          "body": "Also still chewing JAM-5 details: only TTS if OCR conf ≥ 0.72. Biggest blocker is thermal — when Sam’s ASR is hot, OCR gets deferred and the menu path dies mid-demo."
+        },
+        {
+          "sender": "Sam",
+          "body": "Privacy update on JAM-8: https://github.com/gjamesd/conference-crew/issues/6 — no continuous cloud audio. Tap-to-share only. I need a speech_active signal from Alex so OCR can yield while people are talking."
+        },
+        {
+          "sender": "Jordan",
+          "body": "I’m blocked on JAM-10 fusion until the feature bus is stable: https://github.com/gjamesd/conference-crew/issues/8 — need ocr_tokens + asr_intent + confidences from you two. Please don’t let live translation sneak into this sprint."
+        }
+      ]
+    },
+    {
+      "id": "deeper_status",
+      "title": "More detail on each lane",
+      "cue": "More “where I’m at” detail. Continue, summarize → Linear, or ask for a sprint JSON push.",
+      "suggest": "summarize this meeting — what's most important?",
+      "messages": [
+        {
+          "sender": "Alex",
+          "body": "For JAM-5 I’m calling acceptance: ≥85% top-3 dish lines on 20 golden menus, p95 <250ms with ASR idle, false-speak <5%. Not doing handwriting/CJK/AR underlines on this ticket."
+        },
+        {
+          "sender": "Alex",
+          "body": "Parallel lane JAM-6 font pack + thermal yield: https://github.com/gjamesd/conference-crew/issues/4 — mostly packaging. Depends on Sam’s speech_active from the audio work."
+        },
+        {
+          "sender": "Sam",
+          "body": "JAM-7 acceptance I’m aiming for: cafe false-wake ≤1.2/hr, read_menu precision ≥0.9, max 3 wakes/min + LED. I’ll publish speech_active + endpoint events by Wednesday for Alex/Jordan."
+        },
+        {
+          "sender": "Sam",
+          "body": "On JAM-8 — zero audio bytes leave device unless tap confirmed. Demo builds get cloud feature-flagged OFF; QA should mitm that."
+        },
+        {
+          "sender": "Jordan",
+          "body": "JAM-9 bar: dining recall ≥0.75, never label below 0.55 conf, prefer unknown over wrong. Cutting 10-way taxonomy / translation / social suggestions."
+        },
+        {
+          "sender": "Jordan",
+          "body": "JAM-10 plan: late-fuse OCR keywords + ASR intent + motion prior → {label, confidence}. If JAM-5 OCR conf is high we can heuristic-force dining for the demo."
+        },
+        {
+          "sender": "Alex",
+          "body": "Sam — without speech_active this week, JAM-5/JAM-6 keep fighting ASR for thermal headroom."
+        },
+        {
+          "sender": "Sam",
+          "body": "Yep — committed. speech_active + asr_intent enums by Wednesday for JAM-10."
+        }
+      ]
+    },
+    {
+      "id": "risks_cuts",
+      "title": "Risks and cuts",
+      "cue": "Risks/cuts in plain language. Good time to push a sprint plan to Linear (JAM-11).",
+      "suggest": "create a sprint planning document and JSON from this meeting",
+      "messages": [
+        {
+          "sender": "Jordan",
+          "body": "Risks as I see them: dataset gap on JAM-9 (high), thermal fight JAM-5↔JAM-7 (high), someone reopening cloud on JAM-8 (critical), stylized menus on JAM-5 (medium)."
+        },
+        {
+          "sender": "Alex",
+          "body": "If we only get 70%: keep JAM-5 MenuOCR+TTS, then speech yield on JAM-6. Font pack can slip. Debug overlay slips."
+        },
+        {
+          "sender": "Sam",
+          "body": "My 70%: JAM-8 privacy stub + on-device intents, then JAM-7 wake cap/LED, then false-wake tuning. Long-form dictation is cut."
+        },
+        {
+          "sender": "Jordan",
+          "body": "Mine: dining heuristic from strong JAM-5 OCR, then JAM-9 thresholds, eval harness after. Full transit class can wait."
+        },
+        {
+          "sender": "Alex",
+          "body": "Please formally cut hands-free sign translation so it doesn’t get dumped onto JAM-5 mid-sprint."
+        },
+        {
+          "sender": "Sam",
+          "body": "Same for continuous cloud ASR / always-listening analytics — leave that language on JAM-8 and in the planning doc."
+        },
+        {
+          "sender": "Jordan",
+          "body": "Can CrewBot dump a sprint packet into JAM-11 with owners, out-of-scope, risks, and the 70% order?"
+        }
+      ]
+    },
+    {
+      "id": "close_ask",
+      "title": "Ask for the planning dump",
+      "cue": "Ask CrewBot for summary or sprint JSON — both push to JAM-11 and comment on JAM-5…JAM-10.",
+      "suggest": "create a sprint planning document and JSON from this meeting",
+      "messages": [
+        {
+          "sender": "Jordan",
+          "body": "Yeah — have CrewBot write markdown + JSON to JAM-11 and ping the workstream issues."
+        },
+        {
+          "sender": "Alex",
+          "body": "Call owners clearly: me on JAM-5/JAM-6, Sam on JAM-7/JAM-8, Jordan on JAM-9/JAM-10. Include the Wednesday speech_active dependency."
+        },
+        {
+          "sender": "Sam",
+          "body": "And spell out JAM-8 privacy constraints in the JSON so PM can’t quietly reopen cloud audio."
+        },
+        {
+          "sender": "Jordan",
+          "body": "After that we can keep talking dogfood — Thu cafe test, Fri dry-run."
+        },
+        {
+          "sender": "Alex",
+          "body": "Dogfood stuff: I’ll bring 5 menu cards; Sam bring the noise playlist; Jordan bring the dining/unknown labeling sheet."
+        },
+        {
+          "sender": "Sam",
+          "body": "If CrewBot drafts that packet to JAM-11 now, we stop re-arguing scope every day."
+        }
+      ]
+    },
+    {
+      "id": "after_planning",
+      "title": "Schedule chatter",
+      "cue": "More updates. Ask CrewBot again to refresh JAM-11 with dogfood schedule.",
+      "suggest": "update the sprint plan JSON with the dogfood schedule",
+      "messages": [
+        {
+          "sender": "Jordan",
+          "body": "Schedule I’m proposing for the sync doc: Thu 4pm cafe test, Fri 11am leadership dry-run, Mon ship candidate if gates pass."
+        },
+        {
+          "sender": "Alex",
+          "body": "I’ll freeze the JAM-5 MenuOCR checkpoint Wednesday EOD after speech_active lands. No model swaps after Thu cafe unless it’s P0."
+        },
+        {
+          "sender": "Sam",
+          "body": "JAM-8 stays cloud-off in the demo build; QA checklist should prove zero egress."
+        },
+        {
+          "sender": "Jordan",
+          "body": "I’ll publish JAM-9 eval Friday morning — dining recall + unknown rate. If recall <0.7 we stay heuristic-only for the demo."
+        },
+        {
+          "sender": "Alex",
+          "body": "JAM-6 risk: font license ETA Friday. If blocked, ship sans-only and note it on JAM-11."
+        },
+        {
+          "sender": "Sam",
+          "body": "Cool — ask CrewBot to refresh the sprint JSON on JAM-11 with schedule + that legal risk when you’re ready."
+        }
+      ]
+    }
+  ]
+}

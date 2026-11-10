@@ -12,12 +12,17 @@ class Settings(BaseSettings):
     openai_api_key: str = ""
     openai_model: str = "gpt-4o-mini"
 
+    linear_api_key: str = ""
+    linear_team_id: str = ""
+    linear_team_key: str = ""
+
     default_group_id: str = "crew-demo"
     talks_index: str = "talks"
     messages_index: str = "messages"
     itineraries_index: str = "itineraries"
     query_logs_index: str = "query_logs"
     feedback_index: str = "feedback"
+    llm_cache_index: str = "llm_cache"
 
     host: str = "0.0.0.0"
     port: int = 8000
