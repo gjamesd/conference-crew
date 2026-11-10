@@ -117,17 +117,15 @@ def _es_or_503():
 def home(request: Request) -> HTMLResponse:
     settings = get_settings()
     return templates.TemplateResponse(
+        request,
         "index.html",
-        {
-            "request": request,
-            "group_id": settings.default_group_id,
-        },
+        {"group_id": settings.default_group_id},
     )
 
 
 @app.get("/dashboard", response_class=HTMLResponse)
 def dashboard_page(request: Request) -> HTMLResponse:
-    return templates.TemplateResponse("dashboard.html", {"request": request})
+    return templates.TemplateResponse(request, "dashboard.html")
 
 
 @app.get("/api/health")
